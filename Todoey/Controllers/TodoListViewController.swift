@@ -7,16 +7,16 @@
 //
 
 import UIKit
+import CoreData
 
 class TodoListViewController: UITableViewController {
 
     var itemArray = [Item]()
-    let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("Items.plist")
-    
+    let contex = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
         
 //        print(dataFilePath)
 
@@ -63,8 +63,12 @@ class TodoListViewController: UITableViewController {
         let alert = UIAlertController(title: "Añadir nuevo ToDo", message: "", preferredStyle: .alert)
         
         let action = UIAlertAction(title: "Añadir item", style: .default) { (action) in
-            let newItem = Item()
+            
+
+            let newItem = Item(context: self.contex)
+            
             newItem.title = textField.text!
+            newItem.done = false
             
             self.itemArray.append(newItem)
 //            self.defaults.set(self.itemArray, forKey: "TodoListArray")
@@ -81,26 +85,25 @@ class TodoListViewController: UITableViewController {
     }
     
     func saveItems(){
-        let encoder = PropertyListEncoder()
+
           do{
-              let data = try encoder.encode(itemArray)
-              try data.write(to: self.dataFilePath!)
+            try contex.save()
           }catch{
-              print("Erro encontrado, \(error) :)")
+              print("Erro saving context \(error) :)")
           }
         
           self.tableView.reloadData()
     }
     
     func loadItems(){
-        if let data = try? Data(contentsOf: dataFilePath!){
-            let decoder = PropertyListDecoder()
-            do{
-                itemArray = try decoder.decode([Item].self, from: data)
-            }catch{
-                print("Un error encontrado al extraer los datos \(error)")
-            }
+        let request : NSFetchRequest<Item> = Item.fetchRequest()
+        
+        do{
+           itemArray = try contex.fetch(request)
+        }catch{
+            print("Erro obteniendo context \(error) :)")
         }
+       
     }
 }
 
