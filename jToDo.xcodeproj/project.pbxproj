@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		45FA1F272568612F00274E3E /* CategoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FA1F262568612F00274E3E /* CategoryController.swift */; };
+		45FA1F302568674800274E3E /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FA1F2F2568674800274E3E /* Extensions.swift */; };
+		45FA1F342568776200274E3E /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FA1F332568776200274E3E /* CategoryCell.swift */; };
 		CF52F4292392FDF100FA815B /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CF52F4272392FDF100FA815B /* DataModel.xcdatamodeld */; };
 		CF733362239435D90014E911 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF733361239435D90014E911 /* CategoryViewController.swift */; };
 		CFB053FF238F829400A28AA3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB053FE238F829400A28AA3 /* AppDelegate.swift */; };
@@ -18,9 +21,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		45FA1F262568612F00274E3E /* CategoryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryController.swift; sourceTree = "<group>"; };
+		45FA1F2F2568674800274E3E /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		45FA1F332568776200274E3E /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		CF52F4282392FDF100FA815B /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		CF733361239435D90014E911 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
-		CFB053FB238F829400A28AA3 /* Todoey.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Todoey.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CFB053FB238F829400A28AA3 /* jToDo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = jToDo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFB053FE238F829400A28AA3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CFB05400238F829400A28AA3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		CFB05402238F829400A28AA3 /* TodoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListViewController.swift; sourceTree = "<group>"; };
@@ -41,6 +47,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		45FA1F2E2568673000274E3E /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				45FA1F2F2568674800274E3E /* Extensions.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		CF52F4232392C88800FA815B /* DataModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -53,6 +67,7 @@
 			isa = PBXGroup;
 			children = (
 				CFB05404238F829400A28AA3 /* Main.storyboard */,
+				45FA1F332568776200274E3E /* CategoryCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -71,6 +86,7 @@
 			children = (
 				CFB05402238F829400A28AA3 /* TodoListViewController.swift */,
 				CF733361239435D90014E911 /* CategoryViewController.swift */,
+				45FA1F262568612F00274E3E /* CategoryController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -86,7 +102,7 @@
 		CFB053FC238F829400A28AA3 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				CFB053FB238F829400A28AA3 /* Todoey.app */,
+				CFB053FB238F829400A28AA3 /* jToDo.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -94,6 +110,7 @@
 		CFB053FD238F829400A28AA3 /* Todoey */ = {
 			isa = PBXGroup;
 			children = (
+				45FA1F2E2568673000274E3E /* Utils */,
 				CF52F4242392C89D00FA815B /* Views */,
 				CFB053FE238F829400A28AA3 /* AppDelegate.swift */,
 				CFB05400238F829400A28AA3 /* SceneDelegate.swift */,
@@ -108,9 +125,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		CFB053FA238F829400A28AA3 /* Todoey */ = {
+		CFB053FA238F829400A28AA3 /* jToDo */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CFB0540F238F829500A28AA3 /* Build configuration list for PBXNativeTarget "Todoey" */;
+			buildConfigurationList = CFB0540F238F829500A28AA3 /* Build configuration list for PBXNativeTarget "jToDo" */;
 			buildPhases = (
 				CFB053F7238F829400A28AA3 /* Sources */,
 				CFB053F8238F829400A28AA3 /* Frameworks */,
@@ -120,9 +137,9 @@
 			);
 			dependencies = (
 			);
-			name = Todoey;
+			name = jToDo;
 			productName = Todoey;
-			productReference = CFB053FB238F829400A28AA3 /* Todoey.app */;
+			productReference = CFB053FB238F829400A28AA3 /* jToDo.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -140,7 +157,7 @@
 					};
 				};
 			};
-			buildConfigurationList = CFB053F6238F829400A28AA3 /* Build configuration list for PBXProject "Todoey" */;
+			buildConfigurationList = CFB053F6238F829400A28AA3 /* Build configuration list for PBXProject "jToDo" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -153,7 +170,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				CFB053FA238F829400A28AA3 /* Todoey */,
+				CFB053FA238F829400A28AA3 /* jToDo */,
 			);
 		};
 /* End PBXProject section */
@@ -179,8 +196,11 @@
 				CF733362239435D90014E911 /* CategoryViewController.swift in Sources */,
 				CF52F4292392FDF100FA815B /* DataModel.xcdatamodeld in Sources */,
 				CFB05403238F829400A28AA3 /* TodoListViewController.swift in Sources */,
+				45FA1F342568776200274E3E /* CategoryCell.swift in Sources */,
 				CFB053FF238F829400A28AA3 /* AppDelegate.swift in Sources */,
 				CFB05401238F829400A28AA3 /* SceneDelegate.swift in Sources */,
+				45FA1F272568612F00274E3E /* CategoryController.swift in Sources */,
+				45FA1F302568674800274E3E /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -256,7 +276,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -310,7 +330,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -331,7 +351,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.javiercueto.Todoey;
+				PRODUCT_BUNDLE_IDENTIFIER = com.javiercueto.jToDo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -349,7 +369,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.javiercueto.Todoey;
+				PRODUCT_BUNDLE_IDENTIFIER = com.javiercueto.jToDo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -359,7 +379,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		CFB053F6238F829400A28AA3 /* Build configuration list for PBXProject "Todoey" */ = {
+		CFB053F6238F829400A28AA3 /* Build configuration list for PBXProject "jToDo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CFB0540D238F829500A28AA3 /* Debug */,
@@ -368,7 +388,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CFB0540F238F829500A28AA3 /* Build configuration list for PBXNativeTarget "Todoey" */ = {
+		CFB0540F238F829500A28AA3 /* Build configuration list for PBXNativeTarget "jToDo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CFB05410238F829500A28AA3 /* Debug */,
