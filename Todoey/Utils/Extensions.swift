@@ -11,7 +11,16 @@ import UIKit
 
 extension UIView {
     
-    func anchor (top: NSLayoutYAxisAnchor?, left: NSLayoutXAxisAnchor?, bottom: NSLayoutYAxisAnchor?, right: NSLayoutXAxisAnchor?,  paddingTop: CGFloat, paddingLeft: CGFloat, paddingBottom: CGFloat, paddingRight: CGFloat, width: CGFloat, height: CGFloat, enableInsets: Bool) {
+    func anchor(top: NSLayoutYAxisAnchor? = nil,
+                       left: NSLayoutXAxisAnchor? = nil,
+                       bottom: NSLayoutYAxisAnchor? = nil,
+                       right: NSLayoutXAxisAnchor? = nil,
+                       paddingTop: CGFloat = 0,
+                       paddingLeft: CGFloat = 0,
+                       paddingBottom: CGFloat = 0,
+                       paddingRight: CGFloat = 0,
+                       width: CGFloat? = nil,
+                       height: CGFloat? = nil){
 
         
         translatesAutoresizingMaskIntoConstraints = false
@@ -28,13 +37,20 @@ extension UIView {
         if let bottom = bottom {
             bottomAnchor.constraint(equalTo: bottom, constant: -paddingBottom).isActive = true
         }
-        if height != 0 {
+        if let height = height {
             heightAnchor.constraint(equalToConstant: height).isActive = true
         }
-        if width != 0 {
+        if let width = width {
             widthAnchor.constraint(equalToConstant: width).isActive = true
         }
         
     }
+    
+    func setDimentions(height: CGFloat, width: CGFloat){
+        translatesAutoresizingMaskIntoConstraints = false
+        heightAnchor.constraint(equalToConstant: height).isActive = true
+        widthAnchor.constraint(equalToConstant: width).isActive = true
+    }
+    
     
 }
