@@ -9,7 +9,7 @@
 import UIKit
 
 class CategoryController: UIViewController {
-    private var tableView = UITableView()
+    private var tableView: UITableView!
     let cellId = "cellId"
     let cellSpacingHeight:CGFloat = 0
     
@@ -29,14 +29,7 @@ class CategoryController: UIViewController {
         tableView.separatorStyle = .none
         tableView.delegate = self
         tableView.dataSource = self
-        
-        
-
-        //tableView.backgroundColor = .lightGray
-        //tableView.register(LocationCell.self, forCellReuseIdentifier: reuseIndentifier)
-        //tableView.rowHeight = 60
-        //tableView.frame = CGRect(x: 0 , y: 0, width: view.frame.width, height: view.frame.height)
-        
+        //tableView.backgroundColor = .white //UIColor(named: "ColorGrayTable")
         view.addSubview(tableView)
     }
     
@@ -56,7 +49,7 @@ extension CategoryController: UITableViewDelegate, UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! CategoryCell
         // note that indexPath.section is used rather than indexPath.row
-
+        cell.accessoryType = .disclosureIndicator
 
         return cell
     }
