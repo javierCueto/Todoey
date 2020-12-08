@@ -33,7 +33,7 @@ class CategoryViewController: UITableViewController {
         
         
         cell.textLabel?.text = categories[indexPath.row].name
-        
+       
         
         print("datos cargados")
         

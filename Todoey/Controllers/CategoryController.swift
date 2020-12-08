@@ -8,8 +8,8 @@
 
 import UIKit
 
-class CategoryController: UIViewController {
-    private var tableView: UITableView!
+class CategoryController: UITableViewController {
+   // private var tableView: UITableView!
     let cellId = "cellId"
     let cellSpacingHeight:CGFloat = 0
     
@@ -22,15 +22,20 @@ class CategoryController: UIViewController {
         configureNavigationBar()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
     
+    }
+
     func configureTableView(){
-        tableView = UITableView(frame: CGRect(x: 0 , y: 0, width: view.frame.width, height: view.frame.height), style: .insetGrouped)
+
+       
+        tableView = UITableView(frame: self.tableView.frame, style: .insetGrouped)
+        //tableView.allowsSelection = false
         tableView.register(CategoryCell.self, forCellReuseIdentifier: cellId)
         tableView.separatorStyle = .none
-        tableView.delegate = self
-        tableView.dataSource = self
-        //tableView.backgroundColor = .white //UIColor(named: "ColorGrayTable")
-        view.addSubview(tableView)
+
+
     }
     
     func configureNavigationBar(){
@@ -40,43 +45,43 @@ class CategoryController: UIViewController {
     
 }
 
-extension CategoryController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+extension CategoryController{
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! CategoryCell
-        // note that indexPath.section is used rather than indexPath.row
         cell.accessoryType = .disclosureIndicator
-
         return cell
     }
     
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
  
         }
     }
    
     
-    func numberOfSections(in tableView: UITableView) -> Int {
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
         5
     }
     
     
     // Set the spacing between sections
-       func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
            return cellSpacingHeight
        }
     
     // Make the background color show through
-        func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
             let headerView = UIView()
            // headerView.anchor(height: 5)
-            headerView.backgroundColor = UIColor.clear
+        headerView.backgroundColor = UIColor.clear
             return headerView
         }
     
@@ -84,3 +89,4 @@ extension CategoryController: UITableViewDelegate, UITableViewDataSource {
     
     
 }
+
