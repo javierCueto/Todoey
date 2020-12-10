@@ -9,7 +9,6 @@
 import UIKit
 
 class CategoryController: UITableViewController {
-   // private var tableView: UITableView!
     let cellId = "cellId"
     let cellSpacingHeight:CGFloat = 0
     
@@ -20,11 +19,12 @@ class CategoryController: UITableViewController {
         super.viewDidLoad()
         configureTableView()
         configureNavigationBar()
+       
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-    
+
     }
 
     func configureTableView(){
@@ -41,8 +41,18 @@ class CategoryController: UITableViewController {
     func configureNavigationBar(){
         navigationItem.title = "Categorias"
         navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(handleAddNewCategory))
     }
     
+}
+
+extension CategoryController {
+    @objc func handleAddNewCategory(){
+        let controller = AddCategoryViewController()
+        controller.modalTransitionStyle = .crossDissolve
+        controller.modalPresentationStyle = .overCurrentContext
+        present(controller, animated: true, completion: nil)
+    }
 }
 
 extension CategoryController{

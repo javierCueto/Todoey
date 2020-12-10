@@ -74,7 +74,7 @@
             </objects>
             <point key="canvasLocation" x="247.5" y="23.239436619718312"/>
         </scene>
-        <!--jToDo-->
+        <!--Category View Controller-->
         <scene sceneID="Gdm-LP-ksd">
             <objects>
                 <tableViewController id="dNQ-aH-ecT" customClass="CategoryViewController" customModule="jToDo" customModuleProvider="target" sceneMemberID="viewController">
@@ -99,7 +99,8 @@
                             <outlet property="delegate" destination="dNQ-aH-ecT" id="uWy-hI-6g1"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="jToDo" id="ucZ-8K-hS8">
+                    <navigationItem key="navigationItem" id="ucZ-8K-hS8">
+                        <nil key="title"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="jdc-9e-FVS">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
@@ -113,7 +114,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r8X-WO-siL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1034" y="23"/>
+            <point key="canvasLocation" x="1033.3333333333335" y="22.767857142857142"/>
         </scene>
     </scenes>
     <resources>
