@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		451FF9AB258016E500398C71 /* AddCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451FF9AA258016E500398C71 /* AddCategoryViewController.swift */; };
+		451FF9AB258016E500398C71 /* AddCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451FF9AA258016E500398C71 /* AddCategoryView.swift */; };
+		45C1C2782582DA2A00A06E3A /* EmojiTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C1C2772582DA2900A06E3A /* EmojiTextField.swift */; };
 		45FA1F272568612F00274E3E /* CategoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FA1F262568612F00274E3E /* CategoryController.swift */; };
 		45FA1F302568674800274E3E /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FA1F2F2568674800274E3E /* Extensions.swift */; };
 		45FA1F342568776200274E3E /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FA1F332568776200274E3E /* CategoryCell.swift */; };
@@ -22,7 +23,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		451FF9AA258016E500398C71 /* AddCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCategoryViewController.swift; sourceTree = "<group>"; };
+		451FF9AA258016E500398C71 /* AddCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCategoryView.swift; sourceTree = "<group>"; };
+		45C1C2772582DA2900A06E3A /* EmojiTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiTextField.swift; sourceTree = "<group>"; };
 		45FA1F262568612F00274E3E /* CategoryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryController.swift; sourceTree = "<group>"; };
 		45FA1F2F2568674800274E3E /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		45FA1F332568776200274E3E /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
@@ -70,7 +72,8 @@
 			children = (
 				CFB05404238F829400A28AA3 /* Main.storyboard */,
 				45FA1F332568776200274E3E /* CategoryCell.swift */,
-				451FF9AA258016E500398C71 /* AddCategoryViewController.swift */,
+				451FF9AA258016E500398C71 /* AddCategoryView.swift */,
+				45C1C2772582DA2900A06E3A /* EmojiTextField.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -199,7 +202,8 @@
 				CF733362239435D90014E911 /* CategoryViewController.swift in Sources */,
 				CF52F4292392FDF100FA815B /* DataModel.xcdatamodeld in Sources */,
 				CFB05403238F829400A28AA3 /* TodoListViewController.swift in Sources */,
-				451FF9AB258016E500398C71 /* AddCategoryViewController.swift in Sources */,
+				451FF9AB258016E500398C71 /* AddCategoryView.swift in Sources */,
+				45C1C2782582DA2A00A06E3A /* EmojiTextField.swift in Sources */,
 				45FA1F342568776200274E3E /* CategoryCell.swift in Sources */,
 				CFB053FF238F829400A28AA3 /* AppDelegate.swift in Sources */,
 				CFB05401238F829400A28AA3 /* SceneDelegate.swift in Sources */,
