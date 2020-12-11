@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		451FF9AB258016E500398C71 /* AddCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451FF9AA258016E500398C71 /* AddCategoryView.swift */; };
 		45C1C2782582DA2A00A06E3A /* EmojiTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C1C2772582DA2900A06E3A /* EmojiTextField.swift */; };
+		45C1C27B2583D56A00A06E3A /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C1C27A2583D56A00A06E3A /* Constant.swift */; };
 		45FA1F272568612F00274E3E /* CategoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FA1F262568612F00274E3E /* CategoryController.swift */; };
 		45FA1F302568674800274E3E /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FA1F2F2568674800274E3E /* Extensions.swift */; };
 		45FA1F342568776200274E3E /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FA1F332568776200274E3E /* CategoryCell.swift */; };
@@ -25,6 +26,7 @@
 /* Begin PBXFileReference section */
 		451FF9AA258016E500398C71 /* AddCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCategoryView.swift; sourceTree = "<group>"; };
 		45C1C2772582DA2900A06E3A /* EmojiTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiTextField.swift; sourceTree = "<group>"; };
+		45C1C27A2583D56A00A06E3A /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		45FA1F262568612F00274E3E /* CategoryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryController.swift; sourceTree = "<group>"; };
 		45FA1F2F2568674800274E3E /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		45FA1F332568776200274E3E /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
@@ -51,10 +53,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		45C1C27D2583DE3000A06E3A /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "New Group";
+			sourceTree = "<group>";
+		};
 		45FA1F2E2568673000274E3E /* Utils */ = {
 			isa = PBXGroup;
 			children = (
 				45FA1F2F2568674800274E3E /* Extensions.swift */,
+				45C1C27A2583D56A00A06E3A /* Constant.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -116,6 +126,7 @@
 		CFB053FD238F829400A28AA3 /* Todoey */ = {
 			isa = PBXGroup;
 			children = (
+				45C1C27D2583DE3000A06E3A /* New Group */,
 				45FA1F2E2568673000274E3E /* Utils */,
 				CF52F4242392C89D00FA815B /* Views */,
 				CFB053FE238F829400A28AA3 /* AppDelegate.swift */,
@@ -207,6 +218,7 @@
 				45FA1F342568776200274E3E /* CategoryCell.swift in Sources */,
 				CFB053FF238F829400A28AA3 /* AppDelegate.swift in Sources */,
 				CFB05401238F829400A28AA3 /* SceneDelegate.swift in Sources */,
+				45C1C27B2583D56A00A06E3A /* Constant.swift in Sources */,
 				45FA1F272568612F00274E3E /* CategoryController.swift in Sources */,
 				45FA1F302568674800274E3E /* Extensions.swift in Sources */,
 			);

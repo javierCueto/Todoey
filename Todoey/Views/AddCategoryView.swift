@@ -115,8 +115,7 @@ class AddCategoryView: UIView {
         addSubview(titleLabel)
         titleLabel.centerX(inView: self)
         titleLabel.centerY(inView: closedButton)
-        //titleLabel.anchor(top: topAnchor, left: leftAnchor, right: rightAnchor,paddingTop: 20, paddingLeft: 20 ,paddingRight: 20)
-        
+
         addSubview(titleTextField)
         titleTextField.anchor(top: titleLabel.bottomAnchor, left: leftAnchor, right: rightAnchor,paddingTop: 20, paddingLeft: 20 ,paddingRight: 20, height: 50)
         

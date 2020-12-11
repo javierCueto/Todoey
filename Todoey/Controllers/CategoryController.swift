@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class CategoryController: UITableViewController {
     let cellId = "cellId"
@@ -15,13 +16,17 @@ class CategoryController: UITableViewController {
     private let addCategoryView = AddCategoryView()
     let viewCardHeight = 300
     
-    let animals: [String] = ["Horse", "Cow", "Camel", "Sheep", "Goat"]
+    var categories = [Category]()
+    
+    let contex = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
         configureNavigationBar()
+        loadCategories()
        
     }
     
@@ -30,12 +35,24 @@ class CategoryController: UITableViewController {
         
         
     }
+    
+    
+    func loadCategories(){
+        let request: NSFetchRequest<Category> = Category.fetchRequest()
+        do{
+          categories = try contex.fetch(request)
+        }catch{
+           print("Erro obteniendo context \(error) :)")
+        }
+      
+        tableView.reloadData()
+           
+    }
 
     func configureTableView(){
 
        
         tableView = UITableView(frame: self.tableView.frame, style: .insetGrouped)
-        //tableView.allowsSelection = false
         tableView.register(CategoryCell.self, forCellReuseIdentifier: cellId)
         tableView.separatorStyle = .none
 
@@ -104,6 +121,7 @@ extension CategoryController{
         
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! CategoryCell
         cell.accessoryType = .disclosureIndicator
+        cell.model = categories[indexPath.section]
         return cell
     }
     
@@ -118,7 +136,7 @@ extension CategoryController{
     
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        5
+        categories.count
     }
     
     
