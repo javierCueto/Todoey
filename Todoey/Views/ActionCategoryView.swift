@@ -12,9 +12,40 @@ import UIKit
 protocol AddCategoryViewDelegate: class{
     func didFinishNewCategory(title: String?, emoji: String?, isSaved: Bool)
 }
-class AddCategoryView: UIView {
+
+enum CategoryAction {
+    case edit
+    case new
+    case delete
+    
+    var description: String {
+        switch self {
+        
+        case .edit:
+            return "Editar"
+        case .new:
+           return  "Guardar"
+        case .delete:
+            return "nada"
+        }
+    }
+}
+
+class ActionCategoryView: UIView {
     
     weak var delegate: AddCategoryViewDelegate?
+    
+    var categoryAction: CategoryAction = .new
+    
+    var category: Category? {
+        didSet {
+            guard let cat = category else {return}
+            categoryAction = .edit
+            titleTextField.text = cat.name
+            emojiTextField.text = cat.emoji
+            saveButton.setTitle(categoryAction.description, for: .normal)
+        }
+    }
     
     private let closedButton: UIButton = {
         let b = UIButton(type: .close)
@@ -25,8 +56,8 @@ class AddCategoryView: UIView {
     
     private var titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Nueva Categoria"
-        label.textColor = .black
+        label.text = "Categoria"
+        label.textColor = .white
         label.textAlignment = .center
         label.font = UIFont.boldSystemFont(ofSize: 18)
         return label
@@ -68,7 +99,6 @@ class AddCategoryView: UIView {
         field.font = UIFont.systemFont(ofSize: 30)
         field.textAlignment = .center
         field.keyboardAppearance = .dark
-        field.text = "🧰"
         
         return field
     }()
@@ -101,12 +131,12 @@ class AddCategoryView: UIView {
     
     func clearField() {
         titleTextField.text = ""
-        emojiTextField.text = "🧰"
+        // emojiTextField.text = "🧰"
     }
     
     func configureViewCard(){
         print("se ejecuto la vista")
-        backgroundColor = .white
+        backgroundColor = .secondarySystemBackground
         layer.cornerRadius = 15
         
         addSubview(closedButton)

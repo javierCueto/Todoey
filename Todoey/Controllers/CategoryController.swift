@@ -10,13 +10,13 @@ import UIKit
 import CoreData
 
 class CategoryController: UITableViewController {
-    let cellId = "cellId"
-    let cellSpacingHeight:CGFloat = 0
+    private let cellId = "cellId"
+    private let cellSpacingHeight:CGFloat = 0
     private let viewModal = UIView()
-    private let addCategoryView = AddCategoryView()
-    let viewCardHeight = 300
+    private let addCategoryView = ActionCategoryView()
+    private let viewCardHeight = 300
     
-    var categories = [Category]()
+    private var categories = [Category]()
     
     let contex = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
@@ -27,13 +27,12 @@ class CategoryController: UITableViewController {
         configureTableView()
         configureNavigationBar()
         loadCategories()
+        addCategoryView.delegate = self
        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        
     }
     
     
@@ -57,6 +56,7 @@ class CategoryController: UITableViewController {
         tableView.separatorStyle = .none
 
 
+
     }
     
     func configureNavigationBar(){
@@ -68,7 +68,7 @@ class CategoryController: UITableViewController {
     }
     
     
-    func configureAddNewCategory(){
+    func callCategoryView(withCategory category: Category? ){
         navigationController?.view.addSubview(viewModal)
         viewModal.alpha = 0
         
@@ -76,18 +76,23 @@ class CategoryController: UITableViewController {
         viewModal.backgroundColor = UIColor.black.withAlphaComponent(0.67)
         
         viewModal.addSubview(self.addCategoryView)
-        addCategoryView.delegate = self
+        
+        self.addCategoryView.category = category
         
         addCategoryView.centerX(inView: self.viewModal)
         addCategoryView.focusField()
         addCategoryView.clearField()
+        
         addCategoryView.setDimentions(height: CGFloat(self.viewCardHeight) , width: self.viewModal.frame.width - 40)
         addCategoryView.anchor(top: self.viewModal.safeAreaLayoutGuide.topAnchor, paddingTop: 20)
-       
+        
 
         UIView.animate(withDuration: 0.3) {
             self.viewModal.alpha = 1
             self.addCategoryView.frame.origin.y = CGFloat(self.viewCardHeight)
+
+        }completion: { (_) in
+            
         }
     }
     
@@ -96,7 +101,7 @@ class CategoryController: UITableViewController {
 extension CategoryController {
     @objc func handleAddNewCategory(){
        
-        configureAddNewCategory()
+        callCategoryView(withCategory: nil)
     }
 }
 
@@ -107,7 +112,24 @@ extension CategoryController: AddCategoryViewDelegate{
             self.viewModal.endEditing(true)
         } completion: { (_) in
             self.viewModal.removeFromSuperview()
+
+            self.addCategoryView.category?.emoji = String(emoji?.prefix(1) ?? "⏱")
+            self.addCategoryView.category?.name = title
+            
+            
+            do{
+              try self.contex.save()
+            }catch{
+                print("Erro saving category \(error) :)")
+            }
+   
+            UIView.transition(with: self.tableView, duration: 0.3, options: .transitionCrossDissolve, animations: {self.tableView.reloadData()}, completion: nil)
+               
         }
+        
+        
+        
+        
     }
 }
 
@@ -127,13 +149,32 @@ extension CategoryController{
     
     
     
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
- 
-        }
-    }
-   
+  
     
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration?{
+        
+    
+        
+        let delete = UIContextualAction(style: .destructive, title: "Delete") { (contextualAction, view, boolValue)  in
+            print("delete category")
+   
+        }
+
+        let share = UIContextualAction(style: .normal, title: "Edit") { (contextualAction, view, boolValue) in
+
+            self.callCategoryView(withCategory: self.categories[indexPath.section])
+            
+            
+        }
+
+        share.backgroundColor = UIColor.systemBlue
+
+        let swipeActions = UISwipeActionsConfiguration(actions: [delete,share])
+
+        return swipeActions
+    }
+    
+
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         categories.count
