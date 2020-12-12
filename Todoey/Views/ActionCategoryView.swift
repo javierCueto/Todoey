@@ -10,13 +10,13 @@ import UIKit
 
 
 protocol AddCategoryViewDelegate: class{
-    func didFinishNewCategory(title: String?, emoji: String?, isSaved: Bool)
+    func didFinishCategory(title: String?, emoji: String?, categoryAction: CategoryAction)
 }
 
 enum CategoryAction {
     case edit
     case new
-    case delete
+    case close
     
     var description: String {
         switch self {
@@ -25,7 +25,7 @@ enum CategoryAction {
             return "Editar"
         case .new:
            return  "Guardar"
-        case .delete:
+        case .close:
             return "nada"
         }
     }
@@ -39,11 +39,10 @@ class ActionCategoryView: UIView {
     
     var category: Category? {
         didSet {
+            saveButton.setTitle(categoryAction.description, for: .normal)
             guard let cat = category else {return}
-            categoryAction = .edit
             titleTextField.text = cat.name
             emojiTextField.text = cat.emoji
-            saveButton.setTitle(categoryAction.description, for: .normal)
         }
     }
     
@@ -108,7 +107,7 @@ class ActionCategoryView: UIView {
         b.setTitle("Guardar", for: .normal)
         b.backgroundColor = .systemBlue
         b.setTitleColor(.white, for: .normal)
-        b.addTarget(self, action: #selector(handleSaveView), for: .touchUpInside)
+        b.addTarget(self, action: #selector(handleButtonView), for: .touchUpInside)
         b.layer.cornerRadius = 10
         return b
     }()
@@ -131,7 +130,7 @@ class ActionCategoryView: UIView {
     
     func clearField() {
         titleTextField.text = ""
-        // emojiTextField.text = "🧰"
+        emojiTextField.text = "🧰"
     }
     
     func configureViewCard(){
@@ -165,11 +164,12 @@ class ActionCategoryView: UIView {
     }
     
     @objc func handleCloseView(){
-        delegate?.didFinishNewCategory(title: titleTextField.text, emoji: emojiTextField.text, isSaved: false)
+        categoryAction = .close
+        delegate?.didFinishCategory(title: titleTextField.text, emoji: emojiTextField.text, categoryAction: categoryAction)
     }
     
-    @objc func handleSaveView(){
-        delegate?.didFinishNewCategory(title: titleTextField.text, emoji: emojiTextField.text, isSaved: true)
+    @objc func handleButtonView(){
+        delegate?.didFinishCategory(title: titleTextField.text, emoji: emojiTextField.text, categoryAction: categoryAction)
     }
     
 }

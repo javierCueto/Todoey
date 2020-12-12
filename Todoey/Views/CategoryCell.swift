@@ -21,7 +21,6 @@ class CategoryCell: UITableViewCell {
     
     private let emoji: UILabel = {
        let label = UILabel()
-        label.text = "🥑"
         label.font = UIFont.systemFont(ofSize: 20)
         return label
     }()
@@ -29,14 +28,12 @@ class CategoryCell: UITableViewCell {
     
     private let categoryNameLabel: UILabel = {
        let label = UILabel()
-        label.text = "Compras"
         label.font = UIFont.systemFont(ofSize: 20)
         return label
     }()
     
     private let numberItemsLabel: UILabel = {
        let label = UILabel()
-        label.text = "10"
         label.font = UIFont.systemFont(ofSize: 16)
         label.textColor = .systemBlue
         return label

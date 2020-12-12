@@ -31,19 +31,14 @@ class CategoryController: UITableViewController {
        
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    
-    
     func loadCategories(){
         let request: NSFetchRequest<Category> = Category.fetchRequest()
+        request.sortDescriptors = [NSSortDescriptor(key: "createAt", ascending: false)]
         do{
           categories = try contex.fetch(request)
         }catch{
            print("Erro obteniendo context \(error) :)")
         }
-      
         tableView.reloadData()
            
     }
@@ -68,31 +63,27 @@ class CategoryController: UITableViewController {
     }
     
     
-    func callCategoryView(withCategory category: Category? ){
+    func callCategoryView(withCategory category: Category? , withActionCategory actionCategory: CategoryAction){
+        
         navigationController?.view.addSubview(viewModal)
         viewModal.alpha = 0
-        
         viewModal.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height)
         viewModal.backgroundColor = UIColor.black.withAlphaComponent(0.67)
         
         viewModal.addSubview(self.addCategoryView)
-        
-        self.addCategoryView.category = category
-        
         addCategoryView.centerX(inView: self.viewModal)
         addCategoryView.focusField()
         addCategoryView.clearField()
-        
         addCategoryView.setDimentions(height: CGFloat(self.viewCardHeight) , width: self.viewModal.frame.width - 40)
         addCategoryView.anchor(top: self.viewModal.safeAreaLayoutGuide.topAnchor, paddingTop: 20)
+        addCategoryView.categoryAction = actionCategory
+        addCategoryView.category = category
+       
         
 
         UIView.animate(withDuration: 0.3) {
             self.viewModal.alpha = 1
             self.addCategoryView.frame.origin.y = CGFloat(self.viewCardHeight)
-
-        }completion: { (_) in
-            
         }
     }
     
@@ -101,29 +92,55 @@ class CategoryController: UITableViewController {
 extension CategoryController {
     @objc func handleAddNewCategory(){
        
-        callCategoryView(withCategory: nil)
+        callCategoryView(withCategory: nil, withActionCategory: .new)
     }
 }
 
 extension CategoryController: AddCategoryViewDelegate{
-    func didFinishNewCategory(title: String?, emoji: String?, isSaved: Bool) {
+    
+    func didFinishCategory(title: String?, emoji: String?,categoryAction: CategoryAction) {
         UIView.animate(withDuration: 0.3) {
             self.viewModal.alpha = 0
             self.viewModal.endEditing(true)
         } completion: { (_) in
             self.viewModal.removeFromSuperview()
+            
+            
+            switch categoryAction {
+             
+            case .edit:
+                self.addCategoryView.category?.emoji = String(emoji?.prefix(1) ?? "❓")
+                self.addCategoryView.category?.name = title
+                self.addCategoryView.category?.updateAt = Date()
+                do{
+                  try self.contex.save()
+                }catch{
+                    print("Erro saving category \(error) :)")
+                }
+                
+                UIView.transition(with: self.tableView, duration: 0.3, options: .transitionCrossDissolve, animations: {self.tableView.reloadData()}, completion: nil)
 
-            self.addCategoryView.category?.emoji = String(emoji?.prefix(1) ?? "⏱")
-            self.addCategoryView.category?.name = title
-            
-            
-            do{
-              try self.contex.save()
-            }catch{
-                print("Erro saving category \(error) :)")
+            case .new:
+                let newCategory = Category(context: self.contex)
+                newCategory.name = title
+                newCategory.emoji = String(emoji?.prefix(1) ?? "❓")
+                newCategory.createAt = Date()
+                newCategory.updateAt = Date()
+                self.categories.insert(newCategory, at: 0)
+                do{
+                  try self.contex.save()
+                }catch{
+                    print("Erro saving category \(error) :)")
+                }
+                self.tableView.reloadData()
+            case .close:
+                print("close")
             }
+
+            
+            
+            
    
-            UIView.transition(with: self.tableView, duration: 0.3, options: .transitionCrossDissolve, animations: {self.tableView.reloadData()}, completion: nil)
                
         }
         
@@ -156,20 +173,18 @@ extension CategoryController{
     
         
         let delete = UIContextualAction(style: .destructive, title: "Delete") { (contextualAction, view, boolValue)  in
-            print("delete category")
-   
         }
 
-        let share = UIContextualAction(style: .normal, title: "Edit") { (contextualAction, view, boolValue) in
+        let edit = UIContextualAction(style: .normal, title: "Edit") { (contextualAction, view, boolValue) in
 
-            self.callCategoryView(withCategory: self.categories[indexPath.section])
+            self.callCategoryView(withCategory: self.categories[indexPath.section], withActionCategory: .edit)
             
             
         }
 
-        share.backgroundColor = UIColor.systemBlue
+        edit.backgroundColor = UIColor.systemBlue
 
-        let swipeActions = UISwipeActionsConfiguration(actions: [delete,share])
+        let swipeActions = UISwipeActionsConfiguration(actions: [delete,edit])
 
         return swipeActions
     }
