@@ -12,8 +12,13 @@ import CoreData
 class CategoryController: UITableViewController {
     private let cellId = "cellId"
     private let cellSpacingHeight:CGFloat = 8
-    //private let viewModal = UIView()
     private let addCategoryView = ActionCategoryView()
+    private var imageEmpty: UIImageView = {
+        let image = UIImageView(image: #imageLiteral(resourceName: "empty").withRenderingMode(.alwaysTemplate))
+        image.contentMode = .scaleAspectFit
+        image.tintColor = ACCENT_COLOR
+        return image
+    }()
     
     
     private var categories = [Category]()
@@ -32,6 +37,24 @@ class CategoryController: UITableViewController {
         
     }
     
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        print(categories.count < 1)
+        if categories.count < 1 {
+            imageEmpty.setDimentions(height: 300, width: 300)
+            tableView.backgroundView = imageEmpty
+            //tableView.addSubview(imageEmpty)
+            //imageEmpty.center = tableView.center
+            //imageEmpty.centerX(inView: tableView)
+            //imageEmpty.centerY(inView: tableView)
+            
+            //print(tableView.frame)
+           /* imageEmpty.anchor(top: tableView.topAnchor, paddingTop: 90, width: 300, height: 300)*/
+        }else {
+            imageEmpty.removeFromSuperview()
+        }
+    }
     func loadCategories(){
         let request: NSFetchRequest<Category> = Category.fetchRequest()
         request.sortDescriptors = [NSSortDescriptor(key: "createAt", ascending: false)]
@@ -50,8 +73,7 @@ class CategoryController: UITableViewController {
         tableView = UITableView(frame: self.tableView.frame, style: .insetGrouped)
         tableView.register(CategoryCell.self, forCellReuseIdentifier: cellId)
         tableView.separatorStyle = .none
-        
-        
+
     }
     
     func configureNavigationBar(){
@@ -136,6 +158,7 @@ extension CategoryController{
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+      
         
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! CategoryCell
         cell.accessoryType = .disclosureIndicator
@@ -155,13 +178,13 @@ extension CategoryController{
       
             self.contex.delete(self.categories[indexPath.section])
             self.categories.remove(at: indexPath.section )
+     
             do{
                 try self.contex.save()
             }catch{
                 print("Erro saving category \(error) :)")
             }
-            UIView.transition(with: self.tableView, duration: 0.3, options: .transitionCrossDissolve, animations: {self.tableView.reloadData()}, completion: nil)
-        }
+             UIView.transition(with: self.tableView, duration: 0.3, options: .transitionCrossDissolve, animations: {self.tableView.reloadData()}, completion: nil)        }
         
         let edit = UIContextualAction(style: .normal, title: "Edit") { (contextualAction, view, boolValue) in
             
@@ -180,7 +203,10 @@ extension CategoryController{
     
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        categories.count
+    
+      
+        
+        return categories.count
     }
     
     
