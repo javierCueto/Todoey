@@ -42,18 +42,18 @@ class CategoryController: UITableViewController {
         super.viewWillAppear(animated)
         print(categories.count < 1)
         /*if categories.count < 1 {
-            imageEmpty.setDimentions(height: 300, width: 300)
-            tableView.backgroundView = imageEmpty
-            //tableView.addSubview(imageEmpty)
-            //imageEmpty.center = tableView.center
-            //imageEmpty.centerX(inView: tableView)
-            //imageEmpty.centerY(inView: tableView)
-            
-            //print(tableView.frame)
-           /* imageEmpty.anchor(top: tableView.topAnchor, paddingTop: 90, width: 300, height: 300)*/
-        }else {
-            imageEmpty.removeFromSuperview()
-        }*/
+         imageEmpty.setDimentions(height: 300, width: 300)
+         tableView.backgroundView = imageEmpty
+         //tableView.addSubview(imageEmpty)
+         //imageEmpty.center = tableView.center
+         //imageEmpty.centerX(inView: tableView)
+         //imageEmpty.centerY(inView: tableView)
+         
+         //print(tableView.frame)
+         /* imageEmpty.anchor(top: tableView.topAnchor, paddingTop: 90, width: 300, height: 300)*/
+         }else {
+         imageEmpty.removeFromSuperview()
+         }*/
     }
     func loadCategories(){
         let request: NSFetchRequest<Category> = Category.fetchRequest()
@@ -73,7 +73,7 @@ class CategoryController: UITableViewController {
         tableView = UITableView(frame: self.tableView.frame, style: .insetGrouped)
         tableView.register(CategoryCell.self, forCellReuseIdentifier: cellId)
         tableView.separatorStyle = .none
-
+        
     }
     
     func configureNavigationBar(){
@@ -89,8 +89,9 @@ class CategoryController: UITableViewController {
     
     func callCategoryView(withCategory category: Category? , withActionCategory actionCategory: CategoryAction){
         navigationController?.view.addSubview(addCategoryView)
-        addCategoryView.category = category
         addCategoryView.categoryAction = actionCategory
+        addCategoryView.category = category
+        print("nuevo aaction \(addCategoryView.categoryAction.description)")
         addCategoryView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height)
     }
     
@@ -98,6 +99,9 @@ class CategoryController: UITableViewController {
 
 extension CategoryController {
     @objc func handleAddNewCategory(){
+        
+        let generator = UIImpactFeedbackGenerator(style: .medium)
+                    generator.impactOccurred()
         
         callCategoryView(withCategory: nil, withActionCategory: .new)
     }
@@ -158,7 +162,7 @@ extension CategoryController{
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-      
+        
         
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! CategoryCell
         cell.accessoryType = .disclosureIndicator
@@ -175,10 +179,10 @@ extension CategoryController{
         
         
         let delete = UIContextualAction(style: .destructive, title: "Delete") { (contextualAction, view, boolValue)  in
-      
+            
             self.contex.delete(self.categories[indexPath.section])
             self.categories.remove(at: indexPath.section )
-     
+            
             do{
                 try self.contex.save()
             }catch{
@@ -187,8 +191,8 @@ extension CategoryController{
             
             let indexSet = IndexSet(arrayLiteral: indexPath.section)
             tableView.deleteSections(indexSet, with: .automatic)
- 
- }
+            
+        }
         
         let edit = UIContextualAction(style: .normal, title: "Edit") { (contextualAction, view, boolValue) in
             
@@ -207,8 +211,8 @@ extension CategoryController{
     
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-    
-      
+        
+        
         
         return categories.count
     }

@@ -85,7 +85,6 @@ class ActionCategoryView: UIView {
         field.leftViewMode = .always
         field.tintColor = ACCENT_COLOR
         field.placeholder = "Titulo de la categoria"
-        field.becomeFirstResponder()
         field.layer.cornerRadius = 10
         return field
     }()
@@ -137,8 +136,6 @@ class ActionCategoryView: UIView {
                 self.alpha = 1
             }
             viewStatus.toggle()
-        }else{
-            
         }
         
         
