@@ -41,7 +41,7 @@ class CategoryController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         print(categories.count < 1)
-        if categories.count < 1 {
+        /*if categories.count < 1 {
             imageEmpty.setDimentions(height: 300, width: 300)
             tableView.backgroundView = imageEmpty
             //tableView.addSubview(imageEmpty)
@@ -53,7 +53,7 @@ class CategoryController: UITableViewController {
            /* imageEmpty.anchor(top: tableView.topAnchor, paddingTop: 90, width: 300, height: 300)*/
         }else {
             imageEmpty.removeFromSuperview()
-        }
+        }*/
     }
     func loadCategories(){
         let request: NSFetchRequest<Category> = Category.fetchRequest()
@@ -184,7 +184,11 @@ extension CategoryController{
             }catch{
                 print("Erro saving category \(error) :)")
             }
-             UIView.transition(with: self.tableView, duration: 0.3, options: .transitionCrossDissolve, animations: {self.tableView.reloadData()}, completion: nil)        }
+            
+            let indexSet = IndexSet(arrayLiteral: indexPath.section)
+            tableView.deleteSections(indexSet, with: .automatic)
+ 
+ }
         
         let edit = UIContextualAction(style: .normal, title: "Edit") { (contextualAction, view, boolValue) in
             

@@ -19,8 +19,6 @@ class CategoryCell: UITableViewCell {
         }
     }
     
-
-    
     private let emoji: UILabel = {
        let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 20)
