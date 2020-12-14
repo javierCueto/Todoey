@@ -22,7 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if true {
             window = UIWindow(windowScene: scene)
             window?.makeKeyAndVisible()
-            window?.rootViewController = UINavigationController(rootViewController: CategoryController())
+            window?.rootViewController = MainTabController()
         }
    
         
