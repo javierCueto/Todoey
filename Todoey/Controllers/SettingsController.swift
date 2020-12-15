@@ -9,7 +9,23 @@
 import UIKit
 
 class SettingsController: UIViewController {
-    override func viewDidLoad() {
+    
+    let manualView: UIView = {
+        let view = UIView()
         view.backgroundColor = .red
+        view.translatesAutoresizingMaskIntoConstraints = false
+       return view
+    }()
+    
+    override func viewDidLoad() {
+        view.backgroundColor = .white
+        
+        view.addSubview(manualView)
+        manualView.frame = CGRect(x: 10, y: 10, width: 150, height: 150)
+
+        
+        
     }
+    
+    
 }

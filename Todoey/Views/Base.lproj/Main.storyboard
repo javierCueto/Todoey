@@ -8,7 +8,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Items-->
+        <!--Todo List View Controller-->
         <scene sceneID="LrD-8x-CFX">
             <objects>
                 <tableViewController id="ioh-cq-8fo" customClass="TodoListViewController" customModule="jToDo" customModuleProvider="target" sceneMemberID="viewController">
@@ -39,9 +39,10 @@
                             <outlet property="delegate" destination="ioh-cq-8fo" id="nUq-zQ-dNX"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Items" id="AwM-ei-ETD">
+                    <navigationItem key="navigationItem" id="AwM-ei-ETD">
+                        <nil key="title"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="THa-cm-0ZJ">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="tintColor" systemColor="linkColor"/>
                             <connections>
                                 <action selector="addButtonPressed:" destination="ioh-cq-8fo" id="82y-I3-3Ks"/>
                             </connections>
@@ -50,19 +51,22 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qyu-Qd-R0Y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1823" y="23"/>
+            <point key="canvasLocation" x="1821.7391304347827" y="22.767857142857142"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="xiz-lE-oHo">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Aoo-l0-XLO" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="LCS-KC-43g">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="LCS-KC-43g">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" systemColor="linkColor"/>
+                        <color key="barTintColor" systemColor="labelColor"/>
                         <textAttributes key="titleTextAttributes">
-                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="textColor" systemColor="linkColor"/>
+                        </textAttributes>
+                        <textAttributes key="largeTitleTextAttributes">
+                            <color key="textColor" systemColor="linkColor"/>
                         </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -118,6 +122,9 @@
         </scene>
     </scenes>
     <resources>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="linkColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

@@ -80,7 +80,7 @@ class CategoryController: UITableViewController {
         navigationItem.title = "Categorias"
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(handleAddNewCategory))
-        navigationItem.rightBarButtonItem?.tintColor = ACCENT_COLOR
+        //navigationItem.rightBarButtonItem?.tintColor = ACCENT_COLOR
         
         
     }
@@ -238,6 +238,12 @@ extension CategoryController{
         return headerView
     }
     
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+       let controller = ItemController()
+        controller.selectedCategory = categories[indexPath.section]
+        navigationController?.pushViewController(controller, animated: true)
+    }
     
     
     
