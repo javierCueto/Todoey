@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		451FF9AB258016E500398C71 /* ActionCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451FF9AA258016E500398C71 /* ActionCategoryView.swift */; };
+		451FF9AB258016E500398C71 /* ActionModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451FF9AA258016E500398C71 /* ActionModalView.swift */; };
 		45C156D025871CCD00B0B5B8 /* MainTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C156CF25871CCD00B0B5B8 /* MainTabController.swift */; };
 		45C156D325871F2500B0B5B8 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C156D225871F2500B0B5B8 /* SettingsController.swift */; };
 		45C156D6258722E000B0B5B8 /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C156D5258722E000B0B5B8 /* SearchController.swift */; };
@@ -28,7 +28,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		451FF9AA258016E500398C71 /* ActionCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionCategoryView.swift; sourceTree = "<group>"; };
+		451FF9AA258016E500398C71 /* ActionModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionModalView.swift; sourceTree = "<group>"; };
 		45C156CF25871CCD00B0B5B8 /* MainTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabController.swift; sourceTree = "<group>"; };
 		45C156D225871F2500B0B5B8 /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		45C156D5258722E000B0B5B8 /* SearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
@@ -90,7 +90,7 @@
 			children = (
 				CFB05404238F829400A28AA3 /* Main.storyboard */,
 				45FA1F332568776200274E3E /* CategoryCell.swift */,
-				451FF9AA258016E500398C71 /* ActionCategoryView.swift */,
+				451FF9AA258016E500398C71 /* ActionModalView.swift */,
 				45C1C2772582DA2900A06E3A /* EmojiTextField.swift */,
 			);
 			path = Views;
@@ -178,7 +178,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1120;
-				LastUpgradeCheck = 1120;
+				LastUpgradeCheck = 1230;
 				ORGANIZATIONNAME = "José Javier Cueto Mejía";
 				TargetAttributes = {
 					CFB053FA238F829400A28AA3 = {
@@ -227,7 +227,7 @@
 				CF52F4292392FDF100FA815B /* DataModel.xcdatamodeld in Sources */,
 				45C156D025871CCD00B0B5B8 /* MainTabController.swift in Sources */,
 				CFB05403238F829400A28AA3 /* TodoListViewController.swift in Sources */,
-				451FF9AB258016E500398C71 /* ActionCategoryView.swift in Sources */,
+				451FF9AB258016E500398C71 /* ActionModalView.swift in Sources */,
 				45C1C2782582DA2A00A06E3A /* EmojiTextField.swift in Sources */,
 				45FA1F342568776200274E3E /* CategoryCell.swift in Sources */,
 				CFB053FF238F829400A28AA3 /* AppDelegate.swift in Sources */,
@@ -288,6 +288,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -348,6 +349,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;

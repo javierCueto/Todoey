@@ -11,6 +11,7 @@ import CoreData
 
 class ItemController: UITableViewController {
     let reuserIdentifier = "cellItem"
+    private let addItemView = ActionModalView(typeObject: .item, placeHolder: "Nombre de la tarea")
     
     // MARK: -  PROPERTIES
     var itemArray = [Item]()
@@ -28,6 +29,7 @@ class ItemController: UITableViewController {
         super.viewDidLoad()
         configureUI()
         configureTableView()
+        addItemView.delegateItem = self
         
     }
     
@@ -43,10 +45,7 @@ class ItemController: UITableViewController {
         tableView.separatorStyle = .none
     }
     
-    
-    @objc func handleNewItem(){
-        
-    }
+
     
     // MARK: -  FETCH
     func loadItems(with request: NSFetchRequest<Item> = Item.fetchRequest(), predicate: NSPredicate? = nil){
@@ -66,6 +65,30 @@ class ItemController: UITableViewController {
         
         tableView.reloadData()
     }
+    
+    func callActionModalView(withCategory category: Category? , withActionCategory actionCategory: ActionModal){
+        navigationController?.view.addSubview(addItemView)
+        addItemView.categoryAction = actionCategory
+        addItemView.category = category
+        print("nuevo aaction \(addItemView.categoryAction.description)")
+        addItemView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height)
+    }
+    
+    @objc func handleNewItem(){
+        
+        let generator = UIImpactFeedbackGenerator(style: .medium)
+                    generator.impactOccurred()
+        
+        callActionModalView(withCategory: nil, withActionCategory: .new)
+    }
+    
+}
+
+extension ItemController: ActionItemModalViewDelegate{
+    func didFinishItem(title: String?, categoryAction: ActionModal) {
+        self.addItemView.dismiss()
+    }
+    
     
 }
 

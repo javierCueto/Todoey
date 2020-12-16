@@ -12,7 +12,7 @@ import CoreData
 class CategoryController: UITableViewController {
     private let cellId = "cellId"
     private let cellSpacingHeight:CGFloat = 8
-    private let addCategoryView = ActionCategoryView()
+    private let addCategoryView = ActionModalView(typeObject: .category , placeHolder: "Nombre de la categoria")
     private var imageEmpty: UIImageView = {
         let image = UIImageView(image: #imageLiteral(resourceName: "empty").withRenderingMode(.alwaysTemplate))
         image.contentMode = .scaleAspectFit
@@ -87,7 +87,7 @@ class CategoryController: UITableViewController {
     
     
     
-    func callCategoryView(withCategory category: Category? , withActionCategory actionCategory: CategoryAction){
+    func callCategoryView(withCategory category: Category? , withActionCategory actionCategory: ActionModal){
         navigationController?.view.addSubview(addCategoryView)
         addCategoryView.categoryAction = actionCategory
         addCategoryView.category = category
@@ -107,9 +107,10 @@ extension CategoryController {
     }
 }
 
-extension CategoryController: AddCategoryViewDelegate{
+extension CategoryController: ActionModalViewDelegate{
+
     
-    func didFinishCategory(title: String?, emoji: String?,categoryAction: CategoryAction) {
+    func didFinishCategory(title: String?, emoji: String?,categoryAction: ActionModal) {
         self.addCategoryView.dismiss()
         switch categoryAction {
         

@@ -9,11 +9,16 @@
 import UIKit
 
 
-protocol AddCategoryViewDelegate: class{
-    func didFinishCategory(title: String?, emoji: String?, categoryAction: CategoryAction)
+ protocol ActionModalViewDelegate: class{
+    func didFinishCategory(title: String?, emoji: String?, categoryAction: ActionModal)
 }
 
-enum CategoryAction {
+protocol ActionItemModalViewDelegate: class{
+   func didFinishItem(title: String?, categoryAction: ActionModal)
+}
+
+
+enum ActionModal {
     case edit
     case new
     case close
@@ -31,11 +36,31 @@ enum CategoryAction {
     }
 }
 
-class ActionCategoryView: UIView {
+enum TypeObject {
+    case category
+    case item
+
     
-    weak var delegate: AddCategoryViewDelegate?
+    var description: String {
+        switch self {
+        
+        case .category:
+            return "Categoria"
+        case .item:
+            return  "Tarea"
+        }
+    }
+}
+
+class ActionModalView: UIView {
     
-    var categoryAction: CategoryAction = .new
+    weak var delegate: ActionModalViewDelegate?
+    
+    weak var delegateItem: ActionItemModalViewDelegate?
+    
+    var categoryAction: ActionModal = .new
+    
+    private var typeObject: TypeObject?
     
     private var viewStatus: Bool = false
     
@@ -48,13 +73,28 @@ class ActionCategoryView: UIView {
         }
     }
     
+    var item: Item? {
+        didSet {
+            saveButton.setTitle(categoryAction.description, for: .normal)
+            guard let cat = category else {return}
+            titleTextField.text = cat.name
+        }
+    }
+    
     private let viewCard = UIView()
-    private let viewCardHeight = 300
+    private var viewCardHeight = 300
     
     private let closedButton: UIButton = {
-        let b = UIButton(type: .close)
-        b.tintColor = .lightGray
+        let b = UIButton(type: .system)
+        let imageConfig = UIImage.SymbolConfiguration(pointSize: 12)
+        let imageXmark = UIImage(systemName: "xmark", withConfiguration: imageConfig)
+        b.setImage(imageXmark, for: .normal)
+        b.tintColor = .white
+       
         b.addTarget(self, action: #selector(handleCloseView), for: .touchUpInside)
+        b.setDimentions(height: 30, width: 30)
+        b.backgroundColor = ACCENT_COLOR
+        b.layer.cornerRadius = 15
         return b
     }()
     
@@ -119,9 +159,17 @@ class ActionCategoryView: UIView {
     
     
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        configureViewCard()
+    init(typeObject: TypeObject, placeHolder: String ) {
+        super.init(frame: .zero)
+        self.typeObject = typeObject
+        
+        if typeObject == .item {
+            viewCardHeight = viewCardHeight - 90
+        }
+        self.configureViewCard()
+        self.titleLabel.text = typeObject.description
+        self.titleTextField.placeholder = placeHolder
+       
     }
     
     
@@ -181,15 +229,16 @@ class ActionCategoryView: UIView {
         viewCard.layer.cornerRadius = 15
         
         viewCard.addSubview(closedButton)
-        closedButton.anchor(top: viewCard.topAnchor, right: viewCard.rightAnchor, paddingTop: 20, paddingRight: 20)
+        closedButton.anchor(top: viewCard.topAnchor, right: viewCard.rightAnchor, paddingTop: -7.5, paddingRight: -7.5)
         
         viewCard.addSubview(titleLabel)
         titleLabel.centerX(inView: viewCard)
-        titleLabel.centerY(inView: closedButton)
+        titleLabel.anchor(top: viewCard.topAnchor, paddingTop: 20)
         
         viewCard.addSubview(titleTextField)
         titleTextField.anchor(top: titleLabel.bottomAnchor, left: viewCard.leftAnchor, right: viewCard.rightAnchor,paddingTop: 20, paddingLeft: 20 ,paddingRight: 20, height: 50)
         
+        if typeObject == .category {
         viewCard.addSubview(emojiLabel)
         emojiLabel.anchor(top: titleTextField.bottomAnchor, left: viewCard.leftAnchor, right: viewCard.rightAnchor,paddingTop: 20, paddingLeft: 20 ,paddingRight: 20)
         
@@ -198,7 +247,7 @@ class ActionCategoryView: UIView {
         viewCard.addSubview(emojiTextField)
         emojiTextField.centerX(inView: viewCard)
         emojiTextField.anchor(top: emojiLabel.bottomAnchor, paddingTop: 10, width: 70, height: 50)
-        
+        }
         
         viewCard.addSubview(saveButton)
         saveButton.anchor(left: viewCard.leftAnchor,bottom: viewCard.bottomAnchor,right: viewCard.rightAnchor, paddingLeft: 20, paddingBottom: 20, paddingRight: 20, height: 50)
@@ -207,11 +256,20 @@ class ActionCategoryView: UIView {
     
     @objc func handleCloseView(){
         categoryAction = .close
-        delegate?.didFinishCategory(title: titleTextField.text, emoji: emojiTextField.text, categoryAction: categoryAction)
+        if typeObject == .category {
+            delegate?.didFinishCategory(title: titleTextField.text, emoji: emojiTextField.text, categoryAction: categoryAction)
+        }else{
+            delegateItem?.didFinishItem(title: titleTextField.text, categoryAction: categoryAction)
+        }
+        
     }
     
     @objc func handleButtonView(){
-        delegate?.didFinishCategory(title: titleTextField.text, emoji: emojiTextField.text, categoryAction: categoryAction)
+        if typeObject == .category {
+            delegate?.didFinishCategory(title: titleTextField.text, emoji: emojiTextField.text, categoryAction: categoryAction)
+        }else{
+            delegateItem?.didFinishItem(title: titleTextField.text, categoryAction: categoryAction)
+        }
     }
     
 }
