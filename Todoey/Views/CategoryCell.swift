@@ -15,13 +15,14 @@ class CategoryCell: UITableViewCell {
             guard let model = self.model else {return}
             emoji.text = model.emoji
             categoryNameLabel.text = model.name
-            numberItemsLabel.text = "\(model.items?.count ?? 0)"
+            numberItemsLabel.text = "99"//"\(model.items?.count ?? 100)"
         }
     }
     
     private let emoji: UILabel = {
        let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 20)
+        label.baselineAdjustment = .alignCenters
         return label
     }()
     
@@ -29,6 +30,9 @@ class CategoryCell: UITableViewCell {
     private let categoryNameLabel: UILabel = {
        let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 20)
+        label.textAlignment = .left
+        label.baselineAdjustment = .alignCenters
+        label.adjustsFontSizeToFitWidth = true
         return label
     }()
     
@@ -46,16 +50,19 @@ class CategoryCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         addSubview(emoji)
-        emoji.anchor(top: topAnchor,left: leftAnchor, bottom: bottomAnchor, paddingTop: PADDING_TEXT_CELL, paddingLeft: PADDING_TEXT_CELL, paddingBottom: PADDING_TEXT_CELL)
-        
-        addSubview(categoryNameLabel)
-        categoryNameLabel.centerY(inView: emoji)
-        categoryNameLabel.anchor(left: emoji.rightAnchor, paddingLeft: PADDING_TEXT_CELL)
+        emoji.centerY(inView: self)
+        emoji.anchor(top: topAnchor,left: leftAnchor, bottom: bottomAnchor, paddingTop: PADDING_TEXT_CELL, paddingLeft: PADDING_TEXT_CELL, paddingBottom: PADDING_TEXT_CELL, width: 25)
         
         addSubview(numberItemsLabel)
-        numberItemsLabel.centerY(inView: categoryNameLabel)
-        numberItemsLabel.anchor(left: categoryNameLabel.rightAnchor, paddingLeft: PADDING_TEXT_CELL)
+        numberItemsLabel.centerY(inView: self)
+        numberItemsLabel.anchor(right: rightAnchor, paddingRight: 40, width: 20)
+
         
+        
+        addSubview(categoryNameLabel)
+        categoryNameLabel.centerY(inView: self)
+        categoryNameLabel.anchor(left: emoji.rightAnchor,right: numberItemsLabel.leftAnchor,paddingLeft: PADDING_TEXT_CELL, paddingRight: PADDING_TEXT_CELL)
+
         
     }
         

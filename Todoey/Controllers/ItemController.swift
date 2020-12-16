@@ -68,9 +68,9 @@ class ItemController: UITableViewController {
     
     func callActionModalView(withCategory category: Category? , withActionCategory actionCategory: ActionModal){
         navigationController?.view.addSubview(addItemView)
-        addItemView.categoryAction = actionCategory
+        addItemView.action = actionCategory
         addItemView.category = category
-        print("nuevo aaction \(addItemView.categoryAction.description)")
+        print("nuevo aaction \(addItemView.action.description)")
         addItemView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height)
     }
     
@@ -85,7 +85,7 @@ class ItemController: UITableViewController {
 }
 
 extension ItemController: ActionItemModalViewDelegate{
-    func didFinishItem(title: String?, categoryAction: ActionModal) {
+    func didFinishItem(title: String?, itemAction: ActionModal) {
         self.addItemView.dismiss()
     }
     

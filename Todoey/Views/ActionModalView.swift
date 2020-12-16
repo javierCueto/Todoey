@@ -14,7 +14,7 @@ import UIKit
 }
 
 protocol ActionItemModalViewDelegate: class{
-   func didFinishItem(title: String?, categoryAction: ActionModal)
+   func didFinishItem(title: String?, itemAction: ActionModal)
 }
 
 
@@ -58,7 +58,7 @@ class ActionModalView: UIView {
     
     weak var delegateItem: ActionItemModalViewDelegate?
     
-    var categoryAction: ActionModal = .new
+    var action: ActionModal = .new
     
     private var typeObject: TypeObject?
     
@@ -66,7 +66,7 @@ class ActionModalView: UIView {
     
     var category: Category? {
         didSet {
-            saveButton.setTitle(categoryAction.description, for: .normal)
+            saveButton.setTitle(action.description, for: .normal)
             guard let cat = category else {return}
             titleTextField.text = cat.name
             emojiTextField.text = cat.emoji
@@ -75,7 +75,7 @@ class ActionModalView: UIView {
     
     var item: Item? {
         didSet {
-            saveButton.setTitle(categoryAction.description, for: .normal)
+            saveButton.setTitle(action.description, for: .normal)
             guard let cat = category else {return}
             titleTextField.text = cat.name
         }
@@ -164,7 +164,7 @@ class ActionModalView: UIView {
         self.typeObject = typeObject
         
         if typeObject == .item {
-            viewCardHeight = viewCardHeight - 90
+            viewCardHeight = viewCardHeight - 95
         }
         self.configureViewCard()
         self.titleLabel.text = typeObject.description
@@ -217,6 +217,14 @@ class ActionModalView: UIView {
     }
     
     func configureViewCard(){
+        
+       /* let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.extraLight)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.alpha = 0.9
+        blurEffectView.frame = bounds
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        addSubview(blurEffectView)*/
+        
         backgroundColor = UIColor.black.withAlphaComponent(0.67)
         self.alpha = 0
         addSubview(viewCard)
@@ -255,20 +263,20 @@ class ActionModalView: UIView {
     }
     
     @objc func handleCloseView(){
-        categoryAction = .close
+        action = .close
         if typeObject == .category {
-            delegate?.didFinishCategory(title: titleTextField.text, emoji: emojiTextField.text, categoryAction: categoryAction)
+            delegate?.didFinishCategory(title: titleTextField.text, emoji: emojiTextField.text, categoryAction: action)
         }else{
-            delegateItem?.didFinishItem(title: titleTextField.text, categoryAction: categoryAction)
+            delegateItem?.didFinishItem(title: titleTextField.text, itemAction: action)
         }
         
     }
     
     @objc func handleButtonView(){
         if typeObject == .category {
-            delegate?.didFinishCategory(title: titleTextField.text, emoji: emojiTextField.text, categoryAction: categoryAction)
+            delegate?.didFinishCategory(title: titleTextField.text, emoji: emojiTextField.text, categoryAction: action)
         }else{
-            delegateItem?.didFinishItem(title: titleTextField.text, categoryAction: categoryAction)
+            delegateItem?.didFinishItem(title: titleTextField.text, itemAction: action)
         }
     }
     

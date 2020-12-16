@@ -42,6 +42,7 @@ class MainTabController: UITabBarController {
         nav.tabBarItem.selectedImage = selectedImage
         nav.title = tittle
         nav.navigationBar.tintColor = ACCENT_COLOR
+        
         return nav
     }
 }
