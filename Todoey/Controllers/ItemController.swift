@@ -42,7 +42,7 @@ class ItemController: UITableViewController {
     
     func configureTableView(){
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: reuserIdentifier)
-        tableView.separatorStyle = .none
+       // tableView.separatorStyle = .none
     }
     
 
@@ -82,11 +82,58 @@ class ItemController: UITableViewController {
         callActionModalView(withCategory: nil, withActionCategory: .new)
     }
     
+    func saveItems(){
+
+          do{
+            try contex.save()
+          }catch{
+              print("Erro saving context \(error) :)")
+          }
+        
+          self.tableView.reloadData()
+    }
+    
+    
 }
 
 extension ItemController: ActionItemModalViewDelegate{
     func didFinishItem(title: String?, itemAction: ActionModal) {
         self.addItemView.dismiss()
+        
+        switch itemAction {
+        
+        case .edit:
+            break
+        case .new:
+            let newItem = Item(context: self.contex)
+            
+            newItem.title = title
+            newItem.done = false
+            newItem.parentCategory = self.selectedCategory
+            newItem.createAt = Date()
+            
+            self.itemArray.append(newItem)
+
+            
+            self.saveItems()
+        case .close:
+            break
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+       
+        itemArray[indexPath.row].done.toggle()
+        itemArray[indexPath.row].updateAt = Date()
+        do{
+            try self.contex.save()
+        }catch{
+            print("Erro saving category \(error) :)")
+        }
+        
+       self.tableView.reloadData()
+        print(itemArray[indexPath.row].done)
+  
     }
     
     
@@ -96,13 +143,34 @@ extension ItemController: ActionItemModalViewDelegate{
 // MARK: -  UITableViewDataSource
 extension ItemController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 9
+        return itemArray.count
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuserIdentifier, for: indexPath)
-        cell.textLabel?.text = "prueba"
-        print(indexPath.row % 2)
-        cell.backgroundColor = indexPath.row % 2 == 0 ? .systemGray6 : .systemBackground
+        if itemArray[indexPath.row].done {
+            cell.textLabel?.text = itemArray[indexPath.row].title
+            cell.textLabel?.addStrike()
+        }else {
+            cell.textLabel?.removeStrike()
+            cell.textLabel?.text = itemArray[indexPath.row].title
+        }
+       
         return cell
+    }
+    
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+        self.contex.delete(self.itemArray[indexPath.row])
+            do{
+                try self.contex.save()
+            }catch{
+                print("Erro saving category \(error) :)")
+            }
+          self.itemArray.remove(at: indexPath.row)
+           self.tableView.beginUpdates()
+           self.tableView.deleteRows(at: [indexPath], with: .automatic)
+           self.tableView.endUpdates()
+        }
     }
 }

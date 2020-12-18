@@ -76,4 +76,31 @@ extension UIView {
 
         }
     
+   
+    
+    
+}
+
+
+ 
+extension UILabel {
+
+    func addStrike(){
+        guard let text = self.text else {return}
+        self.attributedText =  NSMutableAttributedString(string: text, attributes: [.strikethroughStyle: NSUnderlineStyle.thick.rawValue])
+    }
+
+    
+
+
+    func removeStrike(){
+        guard let text = self.text else {return}
+        let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string:  (text))
+        attributeString.removeAttribute(NSAttributedString.Key.strikethroughStyle, range: NSMakeRange(0, attributeString.length))
+            
+        self.attributedText = attributeString
+    }
+
+   
+
 }

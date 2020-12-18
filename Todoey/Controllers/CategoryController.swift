@@ -34,6 +34,7 @@ class CategoryController: UITableViewController {
         loadCategories()
         addCategoryView.delegate = self
         print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
+       
         
     }
     
@@ -41,6 +42,7 @@ class CategoryController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         print(categories.count < 1)
+        //configureGradientLayer()
         /*if categories.count < 1 {
          imageEmpty.setDimentions(height: 300, width: 300)
          tableView.backgroundView = imageEmpty
@@ -54,6 +56,14 @@ class CategoryController: UITableViewController {
          }else {
          imageEmpty.removeFromSuperview()
          }*/
+    }
+    
+    func configureGradientLayer() {
+        let gradient = CAGradientLayer()
+        gradient.colors = [UIColor.systemPurple.cgColor, UIColor.systemBlue.cgColor]
+        gradient.locations = [0, 1]
+        tableView.layer.addSublayer(gradient)
+        gradient.frame = tableView.frame
     }
     func loadCategories(){
         let request: NSFetchRequest<Category> = Category.fetchRequest()
@@ -73,6 +83,7 @@ class CategoryController: UITableViewController {
         tableView = UITableView(frame: self.tableView.frame, style: .insetGrouped)
         tableView.register(CategoryCell.self, forCellReuseIdentifier: cellId)
         tableView.separatorStyle = .none
+        
         
     }
     

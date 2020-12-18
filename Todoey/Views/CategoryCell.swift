@@ -15,7 +15,7 @@ class CategoryCell: UITableViewCell {
             guard let model = self.model else {return}
             emoji.text = model.emoji
             categoryNameLabel.text = model.name
-            numberItemsLabel.text = "99"//"\(model.items?.count ?? 100)"
+            numberItemsLabel.text = "\(model.items?.count ?? 99)"
         }
     }
     
@@ -40,6 +40,7 @@ class CategoryCell: UITableViewCell {
        let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 16)
         label.textColor = ACCENT_COLOR
+        label.textAlignment = .right
         return label
     }()
  
