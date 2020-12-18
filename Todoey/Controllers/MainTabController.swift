@@ -25,11 +25,11 @@ class MainTabController: UITabBarController {
     func configureViewControllers(){
         view.backgroundColor = .white
         
-        let category = templateNavigationController(unseledtedImage: UIImage(systemName: "list.dash")!, selectedImage: UIImage(systemName: "list.dash")!, rootViewController: CategoryController(), tittle: "Categorias")
+        let category = templateNavigationController(unseledtedImage: #imageLiteral(resourceName: "list"), selectedImage: #imageLiteral(resourceName: "list"), rootViewController: CategoryController(), tittle: "Categorias")
         
-        let settings = templateNavigationController(unseledtedImage: UIImage(systemName: "gear")!, selectedImage: UIImage(systemName: "gear")!, rootViewController: SettingsController(),tittle: "Configuración")
+        let settings = templateNavigationController(unseledtedImage: #imageLiteral(resourceName: "settings"), selectedImage: #imageLiteral(resourceName: "settings"), rootViewController: SettingsController(),tittle: "Configuración")
         
-        let search = templateNavigationController(unseledtedImage: UIImage(systemName: "magnifyingglass")!, selectedImage: UIImage(systemName: "magnifyingglass")!, rootViewController: SearchController(),tittle: "Buscar")
+        let search = templateNavigationController(unseledtedImage: #imageLiteral(resourceName: "search"), selectedImage: #imageLiteral(resourceName: "search"), rootViewController: SearchController(),tittle: "Buscar")
 
         
         viewControllers = [category,search,settings]

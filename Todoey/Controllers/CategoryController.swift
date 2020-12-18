@@ -13,13 +13,7 @@ class CategoryController: UITableViewController {
     private let cellId = "cellId"
     private let cellSpacingHeight:CGFloat = 8
     private let addCategoryView = ActionModalView(typeObject: .category , placeHolder: "Nombre de la categoria")
-    private var imageEmpty: UIImageView = {
-        let image = UIImageView(image: #imageLiteral(resourceName: "empty").withRenderingMode(.alwaysTemplate))
-        image.contentMode = .scaleAspectFit
-        image.tintColor = ACCENT_COLOR
-        return image
-    }()
-    
+ 
     
     private var categories = [Category]()
     
@@ -42,20 +36,6 @@ class CategoryController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         print(categories.count < 1)
-        //configureGradientLayer()
-        /*if categories.count < 1 {
-         imageEmpty.setDimentions(height: 300, width: 300)
-         tableView.backgroundView = imageEmpty
-         //tableView.addSubview(imageEmpty)
-         //imageEmpty.center = tableView.center
-         //imageEmpty.centerX(inView: tableView)
-         //imageEmpty.centerY(inView: tableView)
-         
-         //print(tableView.frame)
-         /* imageEmpty.anchor(top: tableView.topAnchor, paddingTop: 90, width: 300, height: 300)*/
-         }else {
-         imageEmpty.removeFromSuperview()
-         }*/
     }
     
     func configureGradientLayer() {
@@ -67,7 +47,7 @@ class CategoryController: UITableViewController {
     }
     func loadCategories(){
         let request: NSFetchRequest<Category> = Category.fetchRequest()
-        request.sortDescriptors = [NSSortDescriptor(key: "createAt", ascending: false)]
+        request.sortDescriptors = [NSSortDescriptor(key: "createdAt", ascending: false)]
         do{
             categories = try contex.fetch(request)
         }catch{
@@ -128,7 +108,7 @@ extension CategoryController: ActionModalViewDelegate{
         case .edit:
             self.addCategoryView.category?.emoji = String(emoji?.prefix(1) ?? "❓")
             self.addCategoryView.category?.name = title
-            self.addCategoryView.category?.updateAt = Date()
+            self.addCategoryView.category?.updatedAt = Date()
             do{
                 try self.contex.save()
             }catch{
@@ -141,8 +121,8 @@ extension CategoryController: ActionModalViewDelegate{
             let newCategory = Category(context: self.contex)
             newCategory.name = title
             newCategory.emoji = String(emoji?.prefix(1) ?? "❓")
-            newCategory.createAt = Date()
-            newCategory.updateAt = Date()
+            newCategory.createdAt = Date()
+            newCategory.updatedAt = Date()
             self.categories.insert(newCategory, at: 0)
             do{
                 try self.contex.save()

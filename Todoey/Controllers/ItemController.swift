@@ -42,21 +42,19 @@ class ItemController: UITableViewController {
     
     func configureTableView(){
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: reuserIdentifier)
-       // tableView.separatorStyle = .none
+        // tableView.separatorStyle = .none
     }
     
-
+    
     
     // MARK: -  FETCH
-    func loadItems(with request: NSFetchRequest<Item> = Item.fetchRequest(), predicate: NSPredicate? = nil){
+    func loadItems(){
+        
+        let request: NSFetchRequest<Item> = Item.fetchRequest()
         let categoryPredicate = NSPredicate(format: "parentCategory.name MATCHES %@", selectedCategory!.name!)
         
-        if let additionalPredicate = predicate {
-            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [categoryPredicate,additionalPredicate])
-        }else{
-            request.predicate = categoryPredicate
-        }
-        
+        request.predicate = categoryPredicate
+        request.sortDescriptors = [NSSortDescriptor(key: "createdAt", ascending: false)]
         do{
             itemArray = try contex.fetch(request)
         }catch{
@@ -77,20 +75,20 @@ class ItemController: UITableViewController {
     @objc func handleNewItem(){
         
         let generator = UIImpactFeedbackGenerator(style: .medium)
-                    generator.impactOccurred()
+        generator.impactOccurred()
         
         callActionModalView(withCategory: nil, withActionCategory: .new)
     }
     
     func saveItems(){
-
-          do{
-            try contex.save()
-          }catch{
-              print("Erro saving context \(error) :)")
-          }
         
-          self.tableView.reloadData()
+        do{
+            try contex.save()
+        }catch{
+            print("Erro saving context \(error) :)")
+        }
+        
+        self.tableView.reloadData()
     }
     
     
@@ -110,10 +108,10 @@ extension ItemController: ActionItemModalViewDelegate{
             newItem.title = title
             newItem.done = false
             newItem.parentCategory = self.selectedCategory
-            newItem.createAt = Date()
+            newItem.createdAt = Date()
             
-            self.itemArray.append(newItem)
-
+            self.itemArray.insert(newItem, at: 0)
+            
             
             self.saveItems()
         case .close:
@@ -122,18 +120,18 @@ extension ItemController: ActionItemModalViewDelegate{
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-       
+        
         itemArray[indexPath.row].done.toggle()
-        itemArray[indexPath.row].updateAt = Date()
+        itemArray[indexPath.row].updatedAt = Date()
         do{
             try self.contex.save()
         }catch{
             print("Erro saving category \(error) :)")
         }
         
-       self.tableView.reloadData()
+        self.tableView.reloadData()
         print(itemArray[indexPath.row].done)
-  
+        
     }
     
     
@@ -154,23 +152,23 @@ extension ItemController {
             cell.textLabel?.removeStrike()
             cell.textLabel?.text = itemArray[indexPath.row].title
         }
-       
+        
         return cell
     }
     
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-        self.contex.delete(self.itemArray[indexPath.row])
+            self.contex.delete(self.itemArray[indexPath.row])
             do{
                 try self.contex.save()
             }catch{
                 print("Erro saving category \(error) :)")
             }
-          self.itemArray.remove(at: indexPath.row)
-           self.tableView.beginUpdates()
-           self.tableView.deleteRows(at: [indexPath], with: .automatic)
-           self.tableView.endUpdates()
+            self.itemArray.remove(at: indexPath.row)
+            self.tableView.beginUpdates()
+            self.tableView.deleteRows(at: [indexPath], with: .automatic)
+            self.tableView.endUpdates()
         }
     }
 }
