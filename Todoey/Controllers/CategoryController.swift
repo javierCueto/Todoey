@@ -25,17 +25,17 @@ class CategoryController: UITableViewController {
         super.viewDidLoad()
         configureNavigationBar()
         configureTableView()
-        loadCategories()
         addCategoryView.delegate = self
         print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
        
         
     }
     
+
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        print(categories.count < 1)
+        loadCategories()
     }
     
     func configureGradientLayer() {
@@ -47,9 +47,12 @@ class CategoryController: UITableViewController {
     }
     func loadCategories(){
         let request: NSFetchRequest<Category> = Category.fetchRequest()
-        request.sortDescriptors = [NSSortDescriptor(key: "createdAt", ascending: false)]
+        request.sortDescriptors = [NSSortDescriptor(key: "updatedAt", ascending: false)]
         do{
             categories = try contex.fetch(request)
+       
+             
+
         }catch{
             print("Erro obteniendo context \(error) :)")
         }
@@ -159,6 +162,10 @@ extension CategoryController{
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! CategoryCell
         cell.accessoryType = .disclosureIndicator
         cell.model = categories[indexPath.section]
+        let items = categories[indexPath.section].items?.filtered(
+            using: NSPredicate(format: "done = false")
+         )
+        cell.numberItemsLabel.text = "\(items?.count ?? 0)"
         return cell
     }
     

@@ -54,7 +54,7 @@ class ItemController: UITableViewController {
         let categoryPredicate = NSPredicate(format: "parentCategory.name MATCHES %@", selectedCategory!.name!)
         
         request.predicate = categoryPredicate
-        request.sortDescriptors = [NSSortDescriptor(key: "createdAt", ascending: false)]
+        //request.sortDescriptors = [NSSortDescriptor(key: "createdAt", ascending: false)]
         do{
             itemArray = try contex.fetch(request)
         }catch{
@@ -68,7 +68,6 @@ class ItemController: UITableViewController {
         navigationController?.view.addSubview(addItemView)
         addItemView.action = actionCategory
         addItemView.category = category
-        print("nuevo aaction \(addItemView.action.description)")
         addItemView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height)
     }
     
@@ -110,7 +109,8 @@ extension ItemController: ActionItemModalViewDelegate{
             newItem.parentCategory = self.selectedCategory
             newItem.createdAt = Date()
             
-            self.itemArray.insert(newItem, at: 0)
+            //self.itemArray.insert(newItem, at: 0)
+            self.itemArray.append(newItem)
             
             
             self.saveItems()

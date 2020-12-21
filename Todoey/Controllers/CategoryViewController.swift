@@ -70,6 +70,7 @@ class CategoryViewController: UITableViewController {
         let request: NSFetchRequest<Category> = Category.fetchRequest()
         do{
           categories = try contex.fetch(request)
+           
         }catch{
            print("Erro obteniendo context \(error) :)")
         }
