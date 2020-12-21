@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		451188A0259117A000CE5942 /* SubtitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4511889F259117A000CE5942 /* SubtitleCell.swift */; };
 		451FF9AB258016E500398C71 /* ActionModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451FF9AA258016E500398C71 /* ActionModalView.swift */; };
 		45C156D025871CCD00B0B5B8 /* MainTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C156CF25871CCD00B0B5B8 /* MainTabController.swift */; };
 		45C156D325871F2500B0B5B8 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C156D225871F2500B0B5B8 /* SettingsController.swift */; };
@@ -28,6 +29,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4511889F259117A000CE5942 /* SubtitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubtitleCell.swift; sourceTree = "<group>"; };
 		451FF9AA258016E500398C71 /* ActionModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionModalView.swift; sourceTree = "<group>"; };
 		45C156CF25871CCD00B0B5B8 /* MainTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabController.swift; sourceTree = "<group>"; };
 		45C156D225871F2500B0B5B8 /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
@@ -92,6 +94,7 @@
 				45FA1F332568776200274E3E /* CategoryCell.swift */,
 				451FF9AA258016E500398C71 /* ActionModalView.swift */,
 				45C1C2772582DA2900A06E3A /* EmojiTextField.swift */,
+				4511889F259117A000CE5942 /* SubtitleCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -231,6 +234,7 @@
 				45C1C2782582DA2A00A06E3A /* EmojiTextField.swift in Sources */,
 				45FA1F342568776200274E3E /* CategoryCell.swift in Sources */,
 				CFB053FF238F829400A28AA3 /* AppDelegate.swift in Sources */,
+				451188A0259117A000CE5942 /* SubtitleCell.swift in Sources */,
 				CFB05401238F829400A28AA3 /* SceneDelegate.swift in Sources */,
 				45C1C27B2583D56A00A06E3A /* Constant.swift in Sources */,
 				45FA1F272568612F00274E3E /* CategoryController.swift in Sources */,

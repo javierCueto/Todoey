@@ -9,9 +9,10 @@
 import UIKit
 import CoreData
 
+private let seachCellId = "seachCellId"
 class SearchController: UITableViewController{
     // MARK: -  Properties
-    private let cellId = "cellId"
+    
     private let searchController = UISearchController(searchResultsController: nil)
     private var categories = [Category]()
     private var filterCategories = [Category]()
@@ -42,7 +43,7 @@ class SearchController: UITableViewController{
     
     func configureTableView(){
 
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
+        tableView.register(SubtitleCell.self, forCellReuseIdentifier: seachCellId)
 
     }
     
@@ -78,8 +79,7 @@ extension SearchController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        //var cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
-        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: cellId)
+        let cell = tableView.dequeueReusableCell(withIdentifier: seachCellId, for: indexPath)
         
         cell.accessoryType = .disclosureIndicator
         cell.textLabel?.text = filterCategories[indexPath.row].name
@@ -102,10 +102,17 @@ extension SearchController: UISearchResultsUpdating{
         filterCategories = categories.filter({
             $0.name!.contains(searchText) || $0.name!.lowercased().contains(searchText)
         })
-        
-        print(filterCategories)
         self.tableView.reloadData()
     }
-    
+}
+
+
+// MARK: -  UITableViewDelegato
+extension SearchController {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+       let controller = ItemController()
+        controller.selectedCategory = filterCategories[indexPath.section]
+        navigationController?.pushViewController(controller, animated: true)
+    }
     
 }

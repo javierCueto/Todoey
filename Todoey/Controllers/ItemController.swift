@@ -148,9 +148,11 @@ extension ItemController {
         if itemArray[indexPath.row].done {
             cell.textLabel?.text = itemArray[indexPath.row].title
             cell.textLabel?.addStrike()
+            print("tachado")
         }else {
             cell.textLabel?.removeStrike()
             cell.textLabel?.text = itemArray[indexPath.row].title
+            print("tachado No tachado")
         }
         
         return cell
