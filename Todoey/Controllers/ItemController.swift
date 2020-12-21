@@ -42,7 +42,6 @@ class ItemController: UITableViewController {
     
     func configureTableView(){
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: reuserIdentifier)
-        // tableView.separatorStyle = .none
     }
     
     
