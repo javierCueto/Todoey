@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 
 class ItemController: UITableViewController {
-    let reuserIdentifier = "cellItem"
+    let cellIDItem = "cellIDItem"
     private let addItemView = ActionModalView(typeObject: .item, placeHolder: "Nombre de la tarea")
     
     // MARK: -  PROPERTIES
@@ -41,14 +41,15 @@ class ItemController: UITableViewController {
     }
     
     func configureTableView(){
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: reuserIdentifier)
+        tableView.register(ItemCell.self, forCellReuseIdentifier: cellIDItem)
+    
+
     }
     
     
     
     // MARK: -  FETCH
     func loadItems(){
-        
         let request: NSFetchRequest<Item> = Item.fetchRequest()
         let categoryPredicate = NSPredicate(format: "parentCategory.name MATCHES %@", selectedCategory!.name!)
         
@@ -129,7 +130,7 @@ extension ItemController: ActionItemModalViewDelegate{
         }
         
         self.tableView.reloadData()
-        print(itemArray[indexPath.row].done)
+        print("table reload__________________________\(itemArray[indexPath.row].done)")
         
     }
     
@@ -143,15 +144,18 @@ extension ItemController {
         return itemArray.count
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: reuserIdentifier, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIDItem, for: indexPath) as! ItemCell
+        cell.nameLabel.removeStrike()
+        cell.selectionStyle = .none
         if itemArray[indexPath.row].done {
-            cell.textLabel?.text = itemArray[indexPath.row].title
-            cell.textLabel?.addStrike()
-            print("tachado")
+            cell.nameLabel.text = itemArray[indexPath.row].title
+            cell.nameLabel.addStrike()
+            cell.isCheck.image = UIImage(systemName: "checkmark.square")
+            
         }else {
-            cell.textLabel?.removeStrike()
-            cell.textLabel?.text = itemArray[indexPath.row].title
-            print("tachado No tachado")
+            cell.nameLabel.removeStrike()
+            cell.nameLabel.text = itemArray[indexPath.row].title
+            cell.isCheck.image = UIImage(systemName: "square")
         }
         
         return cell

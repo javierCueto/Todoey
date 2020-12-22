@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		451188A0259117A000CE5942 /* SubtitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4511889F259117A000CE5942 /* SubtitleCell.swift */; };
+		451188A325915E2C00CE5942 /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451188A225915E2C00CE5942 /* ItemCell.swift */; };
 		451FF9AB258016E500398C71 /* ActionModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451FF9AA258016E500398C71 /* ActionModalView.swift */; };
 		45C156D025871CCD00B0B5B8 /* MainTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C156CF25871CCD00B0B5B8 /* MainTabController.swift */; };
 		45C156D325871F2500B0B5B8 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C156D225871F2500B0B5B8 /* SettingsController.swift */; };
@@ -30,6 +31,7 @@
 
 /* Begin PBXFileReference section */
 		4511889F259117A000CE5942 /* SubtitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubtitleCell.swift; sourceTree = "<group>"; };
+		451188A225915E2C00CE5942 /* ItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
 		451FF9AA258016E500398C71 /* ActionModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionModalView.swift; sourceTree = "<group>"; };
 		45C156CF25871CCD00B0B5B8 /* MainTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabController.swift; sourceTree = "<group>"; };
 		45C156D225871F2500B0B5B8 /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 				451FF9AA258016E500398C71 /* ActionModalView.swift */,
 				45C1C2772582DA2900A06E3A /* EmojiTextField.swift */,
 				4511889F259117A000CE5942 /* SubtitleCell.swift */,
+				451188A225915E2C00CE5942 /* ItemCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -230,6 +233,7 @@
 				CF52F4292392FDF100FA815B /* DataModel.xcdatamodeld in Sources */,
 				45C156D025871CCD00B0B5B8 /* MainTabController.swift in Sources */,
 				CFB05403238F829400A28AA3 /* TodoListViewController.swift in Sources */,
+				451188A325915E2C00CE5942 /* ItemCell.swift in Sources */,
 				451FF9AB258016E500398C71 /* ActionModalView.swift in Sources */,
 				45C1C2782582DA2A00A06E3A /* EmojiTextField.swift in Sources */,
 				45FA1F342568776200274E3E /* CategoryCell.swift in Sources */,

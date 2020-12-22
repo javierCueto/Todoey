@@ -82,7 +82,7 @@ extension UIView {
 }
 
 
- 
+
 extension UILabel {
 
     func addStrike(){
@@ -97,7 +97,6 @@ extension UILabel {
         guard let text = self.text else {return}
         let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string:  (text))
         attributeString.removeAttribute(NSAttributedString.Key.strikethroughStyle, range: NSMakeRange(0, attributeString.length))
-            
         self.attributedText = attributeString
     }
 
