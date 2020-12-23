@@ -23,17 +23,17 @@ class CategoryCell: UITableViewCell {
             }
      
             categoryNameLabel.text = model.name
-            numberItemsLabel.text = "\(model.items?.count ?? 99)"
+            numberItemsLabel.text = "Tareas faltentes \(model.items?.count ?? 99)"
         }
     }
     
     private let emoji: UILabel = {
        let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 20)
+        label.font = UIFont.boldSystemFont(ofSize: 30)
         label.textAlignment = .center
         label.baselineAdjustment = .alignCenters
-        label.setDimentions(height: 30, width: 30)
-        label.layer.cornerRadius = 30 / 2
+        label.setDimentions(height: 40, width: 40)
+        label.layer.cornerRadius = 40 / 2
         label.layer.masksToBounds = true
         label.textColor = .white
         return label
@@ -51,9 +51,9 @@ class CategoryCell: UITableViewCell {
     
      var numberItemsLabel: UILabel = {
        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 16)
-        label.textColor = ACCENT_COLOR
-        label.textAlignment = .right
+        label.font = UIFont.systemFont(ofSize: 14)
+        label.textColor = .systemGray
+        label.textAlignment = .left
         return label
     }()
  
@@ -66,8 +66,19 @@ class CategoryCell: UITableViewCell {
         addSubview(emoji)
         emoji.centerY(inView: self)
         emoji.anchor(top: topAnchor,left: leftAnchor, bottom: bottomAnchor, paddingTop: PADDING_TEXT_CELL, paddingLeft: PADDING_TEXT_CELL, paddingBottom: PADDING_TEXT_CELL)
+     
+        let stack = UIStackView(arrangedSubviews: [categoryNameLabel,numberItemsLabel])
+        stack.axis = .vertical
+        stack.distribution = .fillProportionally
+
+        addSubview(stack)
+        stack.centerY(inView: self)
+        stack.anchor(left: emoji.rightAnchor,right: rightAnchor, paddingLeft: PADDING_TEXT_CELL, paddingRight: PADDING_TEXT_CELL)
+
+
         
-        addSubview(numberItemsLabel)
+        
+        /*addSubview(numberItemsLabel)
         numberItemsLabel.centerY(inView: self)
         numberItemsLabel.anchor(right: rightAnchor, paddingRight: 40, width: 20)
 
@@ -75,7 +86,7 @@ class CategoryCell: UITableViewCell {
         
         addSubview(categoryNameLabel)
         categoryNameLabel.centerY(inView: self)
-        categoryNameLabel.anchor(left: emoji.rightAnchor,right: numberItemsLabel.leftAnchor,paddingLeft: PADDING_TEXT_CELL, paddingRight: PADDING_TEXT_CELL)
+        categoryNameLabel.anchor(left: emoji.rightAnchor,right: numberItemsLabel.leftAnchor,paddingLeft: PADDING_TEXT_CELL, paddingRight: PADDING_TEXT_CELL)*/
 
         
     }

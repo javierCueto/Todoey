@@ -11,7 +11,7 @@ import CoreData
 
 class CategoryController: UITableViewController {
     private let cellId = "cellId"
-    private let cellSpacingHeight:CGFloat = 8
+    private let cellSpacingHeight:CGFloat = 20
     private let addCategoryView = ActionModalView(typeObject: .category , placeHolder: "Nombre de la categoria")
  
     
@@ -165,7 +165,7 @@ extension CategoryController{
         let items = categories[indexPath.section].items?.filtered(
             using: NSPredicate(format: "done = false")
          )
-        cell.numberItemsLabel.text = "\(items?.count ?? 0)"
+        cell.numberItemsLabel.text = "Tareas faltantes \(items?.count ?? 0)"
         return cell
     }
     
@@ -229,7 +229,7 @@ extension CategoryController{
     }
     
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return cellSpacingHeight + 2
+        return 0
     }
     
     override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
@@ -239,9 +239,16 @@ extension CategoryController{
     
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
        let controller = ItemController()
         controller.selectedCategory = categories[indexPath.section]
         navigationController?.pushViewController(controller, animated: true)
+        categories[indexPath.section].updatedAt = Date()
+        do{
+            try self.contex.save()
+        }catch{
+            print("Erro saving category \(error) :)")
+        }
     }
     
     
