@@ -36,7 +36,7 @@ class SearchController: UITableViewController{
     
     // MARK: -  HELPERS
     func configureUI(){
-        navigationItem.title = "Buscar categoria"
+        navigationItem.title = "Busqueda"
         //navigationItem.largeTitleDisplayMode = .never
 
     }
@@ -84,7 +84,7 @@ extension SearchController {
         cell.accessoryType = .disclosureIndicator
         cell.textLabel?.text = filterCategories[indexPath.row].name
        
-        let items = filterCategories[indexPath.section].items?.filtered(
+        let items = filterCategories[indexPath.row].items?.filtered(
             using: NSPredicate(format: "done = false")
          )
         

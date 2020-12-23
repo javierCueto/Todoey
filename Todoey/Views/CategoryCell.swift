@@ -14,6 +14,14 @@ class CategoryCell: UITableViewCell {
         didSet{
             guard let model = self.model else {return}
             emoji.text = model.emoji
+            emoji.backgroundColor = .clear
+            
+            let isEmoji:Bool = emoji.text?.unicodeScalars.first?.properties.isEmoji ?? false
+
+            if !isEmoji {
+                emoji.backgroundColor = ACCENT_COLOR
+            }
+     
             categoryNameLabel.text = model.name
             numberItemsLabel.text = "\(model.items?.count ?? 99)"
         }
@@ -21,8 +29,13 @@ class CategoryCell: UITableViewCell {
     
     private let emoji: UILabel = {
        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 20)
+        label.font = UIFont.boldSystemFont(ofSize: 20)
+        label.textAlignment = .center
         label.baselineAdjustment = .alignCenters
+        label.setDimentions(height: 30, width: 30)
+        label.layer.cornerRadius = 30 / 2
+        label.layer.masksToBounds = true
+        label.textColor = .white
         return label
     }()
     
@@ -52,7 +65,7 @@ class CategoryCell: UITableViewCell {
         
         addSubview(emoji)
         emoji.centerY(inView: self)
-        emoji.anchor(top: topAnchor,left: leftAnchor, bottom: bottomAnchor, paddingTop: PADDING_TEXT_CELL, paddingLeft: PADDING_TEXT_CELL, paddingBottom: PADDING_TEXT_CELL, width: 25)
+        emoji.anchor(top: topAnchor,left: leftAnchor, bottom: bottomAnchor, paddingTop: PADDING_TEXT_CELL, paddingLeft: PADDING_TEXT_CELL, paddingBottom: PADDING_TEXT_CELL)
         
         addSubview(numberItemsLabel)
         numberItemsLabel.centerY(inView: self)

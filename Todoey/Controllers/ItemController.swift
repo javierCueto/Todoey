@@ -42,7 +42,7 @@ class ItemController: UITableViewController {
     
     func configureTableView(){
         tableView.register(ItemCell.self, forCellReuseIdentifier: cellIDItem)
-    
+        tableView.separatorStyle = .none
 
     }
     
@@ -150,12 +150,12 @@ extension ItemController {
         if itemArray[indexPath.row].done {
             cell.nameLabel.text = itemArray[indexPath.row].title
             cell.nameLabel.addStrike()
-            cell.isCheck.image = UIImage(systemName: "checkmark.square")
+            cell.isCheck.image = UIImage(systemName: "checkmark.circle")
             
         }else {
             cell.nameLabel.removeStrike()
             cell.nameLabel.text = itemArray[indexPath.row].title
-            cell.isCheck.image = UIImage(systemName: "square")
+            cell.isCheck.image = UIImage(systemName: "circle")
         }
         
         return cell
