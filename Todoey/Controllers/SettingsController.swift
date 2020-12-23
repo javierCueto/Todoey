@@ -14,7 +14,8 @@ class SettingsController: UIViewController {
     
     private let setings: [Setting] = [
      
-    
+        Setting(header: "Tema", items: [ItemSetting(name: "Rojo"), ItemSetting(name: "Verde")]),
+        Setting(header: "Tema", items: [ItemSetting(name: "Rojo"), ItemSetting(name: "Verde")])
     ]
     
     override func viewDidLoad() {
@@ -59,6 +60,7 @@ extension SettingsController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
         cell.textLabel?.text = setings[indexPath.section].items[indexPath.row].name
+        cell.imageView?.image = UIImage(systemName: "square")
         return cell
     }
     
