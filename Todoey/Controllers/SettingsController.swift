@@ -12,6 +12,11 @@ class SettingsController: UIViewController {
     private var tableview: UITableView!
     private let cellId = "cellID"
     
+    private let setings: [Setting] = [
+     
+    
+    ]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configUI()
@@ -44,23 +49,23 @@ extension SettingsController: UITableViewDelegate{
 
 extension SettingsController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        5
+        setings[section].items.count
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        4
+        setings.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
-        cell.textLabel?.text = "prueba"
+        cell.textLabel?.text = setings[indexPath.section].items[indexPath.row].name
         return cell
     }
     
     // Create a standard header that includes the returned text.
     func tableView(_ tableView: UITableView, titleForHeaderInSection
                                 section: Int) -> String? {
-       return "Header \(section)"
+        return "\(setings[section].header)"
     }
 
     
