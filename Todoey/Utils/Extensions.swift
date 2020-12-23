@@ -103,3 +103,18 @@ extension UILabel {
    
 
 }
+
+//My colors
+extension UIColor{
+
+}
+
+
+#if DEBUG
+extension UIView{
+    private func debugBorder(color: UIColor = .red){
+        self.layer.borderWidth = 1
+        self.layer.borderColor = color.cgColor
+    }
+}
+#endif

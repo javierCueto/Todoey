@@ -14,8 +14,7 @@ class SettingsController: UIViewController {
     
     private let setings: [Setting] = [
      
-        Setting(header: "Tema", items: [ItemSetting(name: "Rojo"), ItemSetting(name: "Verde")]),
-        Setting(header: "Tema", items: [ItemSetting(name: "Rojo"), ItemSetting(name: "Verde")])
+        Setting(header: "Tema", items: colorsApp)
     ]
     
     override func viewDidLoad() {
@@ -44,7 +43,12 @@ class SettingsController: UIViewController {
 
 // MARK: -  Table
 extension SettingsController: UITableViewDelegate{
-    
+     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        Configuration.shared.ACCENT_COLOR = setings[indexPath.section].items[indexPath.row].color
+
+        self.tabBarController?.tabBar.tintColor = Configuration.shared.ACCENT_COLOR
+        UINavigationBar.appearance().tintColor = Configuration.shared.ACCENT_COLOR
+    }
 }
 
 
@@ -60,7 +64,8 @@ extension SettingsController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
         cell.textLabel?.text = setings[indexPath.section].items[indexPath.row].name
-        cell.imageView?.image = UIImage(systemName: "square")
+        cell.imageView?.image = UIImage(systemName: "square.fill")
+        cell.imageView?.tintColor = setings[indexPath.section].items[indexPath.row].color
         return cell
     }
     

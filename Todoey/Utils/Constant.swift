@@ -9,4 +9,4 @@ import UIKit
 
 let PADDING_TEXT_CELL: CGFloat = 15
 
-let ACCENT_COLOR = UIColor.systemGreen
+

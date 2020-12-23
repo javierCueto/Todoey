@@ -11,27 +11,37 @@ import UIKit
 
 class ItemCell: UITableViewCell {
     
-/*    var model: Category? {
+    var model: Item? {
         didSet{
             guard let model = self.model else {return}
-            emoji.text = model.emoji
-            categoryNameLabel.text = model.name
-            numberItemsLabel.text = "\(model.items?.count ?? 99)"
+            isCheck.tintColor = Configuration.shared.ACCENT_COLOR
+            //cell.nameLabel.removeStrike()
+            if model.done {
+                nameLabel.text = model.title
+                nameLabel.addStrike()
+                isCheck.image = UIImage(systemName: "checkmark.circle")
+                
+            }else {
+                nameLabel.removeStrike()
+                nameLabel.text = model.title
+                isCheck.image = UIImage(systemName: "circle")
+            }
+            
         }
-    }*/
+    }
     
-     let isCheck: UIImageView = {
-       let i = UIImageView()
+    private let isCheck: UIImageView = {
+        let i = UIImageView()
         i.image = UIImage(systemName: "square")
-        i.tintColor = ACCENT_COLOR
+        
         i.setDimentions(height: 30, width: 30)
         i.contentMode = .scaleAspectFit
         return i
     }()
     
     
-     let nameLabel: UILabel = {
-       let label = UILabel()
+    private let nameLabel: UILabel = {
+        let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 20)
         label.textAlignment = .left
         label.baselineAdjustment = .alignCenters
@@ -39,10 +49,11 @@ class ItemCell: UITableViewCell {
         return label
     }()
     
-
-        
+    
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        selectionStyle = .none
         
         addSubview(isCheck)
         isCheck.centerY(inView: self)
@@ -52,14 +63,14 @@ class ItemCell: UITableViewCell {
         addSubview(nameLabel)
         nameLabel.centerY(inView: self)
         nameLabel.anchor(left: isCheck.rightAnchor,right: rightAnchor,paddingLeft: PADDING_TEXT_CELL, paddingRight: PADDING_TEXT_CELL)
-
+        
         
     }
-        
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-
-
+    
+    
 }

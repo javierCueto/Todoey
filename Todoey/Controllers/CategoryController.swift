@@ -38,13 +38,7 @@ class CategoryController: UITableViewController {
         loadCategories()
     }
     
-    func configureGradientLayer() {
-        let gradient = CAGradientLayer()
-        gradient.colors = [UIColor.systemPurple.cgColor, UIColor.systemBlue.cgColor]
-        gradient.locations = [0, 1]
-        tableView.layer.addSublayer(gradient)
-        gradient.frame = tableView.frame
-    }
+
     func loadCategories(){
         let request: NSFetchRequest<Category> = Category.fetchRequest()
         request.sortDescriptors = [NSSortDescriptor(key: "updatedAt", ascending: false)]
@@ -74,7 +68,7 @@ class CategoryController: UITableViewController {
         navigationItem.title = "Categorias"
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(handleAddNewCategory))
-        //navigationItem.rightBarButtonItem?.tintColor = ACCENT_COLOR
+       // navigationItem.rightBarButtonItem?.tintColor = ACCENT_COLOR
         
         
     }

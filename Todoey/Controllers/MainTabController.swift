@@ -15,9 +15,12 @@ class MainTabController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureViewControllers()
-        view.backgroundColor = .white
+        //view.backgroundColor = .white
+        print("cargaron todos los controladores")
+        
     }
     
+
     // MARK: -  API
     
 
@@ -34,7 +37,7 @@ class MainTabController: UITabBarController {
 
         
         viewControllers = [category,search,settings]
-        tabBar.tintColor = ACCENT_COLOR
+        tabBar.tintColor = Configuration.shared.ACCENT_COLOR
     }
     
     func templateNavigationController(unseledtedImage: UIImage, selectedImage: UIImage, rootViewController: UIViewController, tittle: String) -> UINavigationController{
@@ -42,7 +45,7 @@ class MainTabController: UITabBarController {
         nav.tabBarItem.image = unseledtedImage
         nav.tabBarItem.selectedImage = selectedImage
         nav.title = tittle
-        nav.navigationBar.tintColor = ACCENT_COLOR
+        nav.navigationBar.tintColor = Configuration.shared.ACCENT_COLOR
         
         return nav
     }

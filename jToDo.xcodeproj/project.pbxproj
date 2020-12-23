@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		450004A32593AA5D00CCA3A9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 450004A22593AA5D00CCA3A9 /* Assets.xcassets */; };
+		450004A62593BC1D00CCA3A9 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450004A52593BC1D00CCA3A9 /* Configuration.swift */; };
 		451188A0259117A000CE5942 /* SubtitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4511889F259117A000CE5942 /* SubtitleCell.swift */; };
 		451188A325915E2C00CE5942 /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451188A225915E2C00CE5942 /* ItemCell.swift */; };
 		451188A72592E6C700CE5942 /* ItemSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451188A62592E6C700CE5942 /* ItemSetting.swift */; };
@@ -34,6 +35,7 @@
 
 /* Begin PBXFileReference section */
 		450004A22593AA5D00CCA3A9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Todoey/Assets.xcassets; sourceTree = SOURCE_ROOT; };
+		450004A52593BC1D00CCA3A9 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		4511889F259117A000CE5942 /* SubtitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubtitleCell.swift; sourceTree = "<group>"; };
 		451188A225915E2C00CE5942 /* ItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
 		451188A62592E6C700CE5942 /* ItemSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemSetting.swift; sourceTree = "<group>"; };
@@ -87,6 +89,7 @@
 			children = (
 				45FA1F2F2568674800274E3E /* Extensions.swift */,
 				45C1C27A2583D56A00A06E3A /* Constant.swift */,
+				450004A52593BC1D00CCA3A9 /* Configuration.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -246,6 +249,7 @@
 				451188A325915E2C00CE5942 /* ItemCell.swift in Sources */,
 				451FF9AB258016E500398C71 /* ActionModalView.swift in Sources */,
 				45C1C2782582DA2A00A06E3A /* EmojiTextField.swift in Sources */,
+				450004A62593BC1D00CCA3A9 /* Configuration.swift in Sources */,
 				45FA1F342568776200274E3E /* CategoryCell.swift in Sources */,
 				CFB053FF238F829400A28AA3 /* AppDelegate.swift in Sources */,
 				451188A0259117A000CE5942 /* SubtitleCell.swift in Sources */,

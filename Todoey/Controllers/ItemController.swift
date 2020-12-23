@@ -16,11 +16,7 @@ class ItemController: UITableViewController {
     // MARK: -  PROPERTIES
     var itemArray = [Item]()
     
-    var selectedCategory : Category? {
-        didSet{
-            loadItems()
-        }
-    }
+    var selectedCategory : Category? 
     let contex = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     
@@ -30,7 +26,12 @@ class ItemController: UITableViewController {
         configureUI()
         configureTableView()
         addItemView.delegateItem = self
-        
+     
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        loadItems()
     }
     
     // MARK: -  HELPERS
@@ -145,18 +146,8 @@ extension ItemController {
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIDItem, for: indexPath) as! ItemCell
-        cell.nameLabel.removeStrike()
-        cell.selectionStyle = .none
-        if itemArray[indexPath.row].done {
-            cell.nameLabel.text = itemArray[indexPath.row].title
-            cell.nameLabel.addStrike()
-            cell.isCheck.image = UIImage(systemName: "checkmark.circle")
-            
-        }else {
-            cell.nameLabel.removeStrike()
-            cell.nameLabel.text = itemArray[indexPath.row].title
-            cell.isCheck.image = UIImage(systemName: "circle")
-        }
+        cell.model = itemArray[indexPath.row]
+   
         
         return cell
     }
