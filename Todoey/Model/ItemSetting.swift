@@ -8,6 +8,17 @@
 import UIKit
 
 struct ItemSetting {
+    let idTheme: Int
     let name: String
-    let color: UIColor
+    let detailName: String?
+    let color: UIColor?
+    let icon: String?
+
+    init(idTheme:Int = 0, name: String, detailName: String? = nil, color: UIColor? = nil, icon:String? = nil){
+        self.name = name
+        self.detailName = detailName
+        self.color = color
+        self.icon = icon
+        self.idTheme = idTheme
+    }
 }

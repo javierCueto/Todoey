@@ -6,7 +6,14 @@
 //  Copyright © 2020 José Javier Cueto Mejía. All rights reserved.
 //
 
+enum TypeSetting {
+    case theme
+    case about
+    case config
+}
+
 struct Setting {
     let header: String
     let items: [ItemSetting]
+    let typeSetting: TypeSetting
 }

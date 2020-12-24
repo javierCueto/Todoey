@@ -14,8 +14,8 @@ class ItemCell: UITableViewCell {
     var model: Item? {
         didSet{
             guard let model = self.model else {return}
-            isCheck.tintColor = Configuration.shared.ACCENT_COLOR
-            //cell.nameLabel.removeStrike()
+            isCheck.tintColor = ThemeColor.shared.ACCENT_COLOR
+            nameLabel.removeStrike()
             if model.done {
                 nameLabel.text = model.title
                 nameLabel.addStrike()

@@ -8,9 +8,10 @@
 
 import UIKit
 
-final public class Configuration  {
-    var ACCENT_COLOR = UIColor.systemGreen
+final public class ThemeColor  {
+
+    var ACCENT_COLOR = colorsApp[UserDefaults.standard.integer(forKey: "Theme")].color 
     
     private init() {}
-    public static let shared = Configuration()
+    public static let shared = ThemeColor()
 }

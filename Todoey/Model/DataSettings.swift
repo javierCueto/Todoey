@@ -14,16 +14,14 @@ Setting(header: "Tema", items: [ItemSetting(name: "Rojo"), ItemSetting(name: "Ve
 Setting(header: "Tema", items: [ItemSetting(name: "Rojo"), ItemSetting(name: "Verde")])
 */
 
+import UIKit
 
-let colorsApp:[ItemSetting] = [
-    ItemSetting(name: "Red",color: .systemRed),
-    ItemSetting(name: "Green",color: .systemGreen),
-    ItemSetting(name: "Blue",color: .systemBlue),
-    ItemSetting(name: "Pink",color: .systemPink),
-    ItemSetting(name: "Teal",color: .systemTeal),
-    ItemSetting(name: "Gray",color: .systemGray),
-    ItemSetting(name: "Orange",color: .systemOrange),
-    ItemSetting(name: "Purple",color: .systemPurple),
-    ItemSetting(name: "Indigo",color: .systemIndigo),
-    ItemSetting(name: "Yellow",color: .systemYellow)
+
+
+let aboutApp = [
+    ItemSetting(name: "Aplication",detailName: "\(Bundle.main.appName)"),
+    ItemSetting(name: "Version",detailName: "\(Bundle.main.versionNumber)"),
+    ItemSetting(name: "Compatibilidad",detailName: "iPhone"),
+    ItemSetting(name: "Developer",detailName: "Javier Cueto"),
+    
 ]
