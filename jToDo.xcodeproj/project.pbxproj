@@ -8,8 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		450004A32593AA5D00CCA3A9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 450004A22593AA5D00CCA3A9 /* Assets.xcassets */; };
-		450004A62593BC1D00CCA3A9 /* ThemeColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450004A52593BC1D00CCA3A9 /* ThemeColor.swift */; };
-		450004AD259413C700CCA3A9 /* ThemeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450004AC259413C700CCA3A9 /* ThemeData.swift */; };
+		450004A62593BC1D00CCA3A9 /* ConfigSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450004A52593BC1D00CCA3A9 /* ConfigSettings.swift */; };
 		451188A0259117A000CE5942 /* SubtitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4511889F259117A000CE5942 /* SubtitleCell.swift */; };
 		451188A325915E2C00CE5942 /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451188A225915E2C00CE5942 /* ItemCell.swift */; };
 		451188A72592E6C700CE5942 /* ItemSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451188A62592E6C700CE5942 /* ItemSetting.swift */; };
@@ -35,8 +34,7 @@
 
 /* Begin PBXFileReference section */
 		450004A22593AA5D00CCA3A9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Todoey/Assets.xcassets; sourceTree = SOURCE_ROOT; };
-		450004A52593BC1D00CCA3A9 /* ThemeColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeColor.swift; sourceTree = "<group>"; };
-		450004AC259413C700CCA3A9 /* ThemeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeData.swift; sourceTree = "<group>"; };
+		450004A52593BC1D00CCA3A9 /* ConfigSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigSettings.swift; sourceTree = "<group>"; };
 		4511889F259117A000CE5942 /* SubtitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubtitleCell.swift; sourceTree = "<group>"; };
 		451188A225915E2C00CE5942 /* ItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
 		451188A62592E6C700CE5942 /* ItemSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemSetting.swift; sourceTree = "<group>"; };
@@ -77,20 +75,19 @@
 			isa = PBXGroup;
 			children = (
 				CF52F4232392C88800FA815B /* DataModel */,
-				451188A62592E6C700CE5942 /* ItemSetting.swift */,
-				451188AD2592E71600CE5942 /* Setting.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
 		};
-		458A26A2259504DD00986C9A /* Theme */ = {
+		458A26A2259504DD00986C9A /* Theme and Settings */ = {
 			isa = PBXGroup;
 			children = (
-				450004AC259413C700CCA3A9 /* ThemeData.swift */,
-				450004A52593BC1D00CCA3A9 /* ThemeColor.swift */,
+				451188A62592E6C700CE5942 /* ItemSetting.swift */,
+				450004A52593BC1D00CCA3A9 /* ConfigSettings.swift */,
 				451188B02592EA0700CE5942 /* DataSettings.swift */,
+				451188AD2592E71600CE5942 /* Setting.swift */,
 			);
-			path = Theme;
+			path = "Theme and Settings";
 			sourceTree = "<group>";
 		};
 		45FA1F2E2568673000274E3E /* Utils */ = {
@@ -165,7 +162,7 @@
 		CFB053FD238F829400A28AA3 /* Todoey */ = {
 			isa = PBXGroup;
 			children = (
-				458A26A2259504DD00986C9A /* Theme */,
+				458A26A2259504DD00986C9A /* Theme and Settings */,
 				451188A52592E66F00CE5942 /* Model */,
 				45FA1F2E2568673000274E3E /* Utils */,
 				CF52F4242392C89D00FA815B /* Views */,
@@ -255,12 +252,11 @@
 				451188A325915E2C00CE5942 /* ItemCell.swift in Sources */,
 				451FF9AB258016E500398C71 /* ActionModalView.swift in Sources */,
 				45C1C2782582DA2A00A06E3A /* EmojiTextField.swift in Sources */,
-				450004A62593BC1D00CCA3A9 /* ThemeColor.swift in Sources */,
+				450004A62593BC1D00CCA3A9 /* ConfigSettings.swift in Sources */,
 				45FA1F342568776200274E3E /* CategoryCell.swift in Sources */,
 				CFB053FF238F829400A28AA3 /* AppDelegate.swift in Sources */,
 				451188A0259117A000CE5942 /* SubtitleCell.swift in Sources */,
 				458A269F2594E9CE00986C9A /* ThemeController.swift in Sources */,
-				450004AD259413C700CCA3A9 /* ThemeData.swift in Sources */,
 				CFB05401238F829400A28AA3 /* SceneDelegate.swift in Sources */,
 				45C1C27B2583D56A00A06E3A /* Constant.swift in Sources */,
 				45FA1F272568612F00274E3E /* CategoryController.swift in Sources */,

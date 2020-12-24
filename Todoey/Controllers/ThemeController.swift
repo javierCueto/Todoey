@@ -26,13 +26,13 @@ class ThemeController: UITableViewController {
 
 extension ThemeController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return colorsApp.count
+        return ConfigSettings.shared.dataSettings.colorsApp.count
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellThemeID, for: indexPath)
-        cell.textLabel?.text = colorsApp[indexPath.row].name
+        cell.textLabel?.text = ConfigSettings.shared.dataSettings.colorsApp[indexPath.row].name
         cell.imageView?.image = UIImage(systemName: "circle.fill")
-        cell.imageView?.tintColor = colorsApp[indexPath.row].color
+        cell.imageView?.tintColor = ConfigSettings.shared.dataSettings.colorsApp[indexPath.row].color
         
         return cell
     }
@@ -51,12 +51,12 @@ extension ThemeController {
     
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let newColor = colorsApp[indexPath.row].idTheme
+        let newColor = ConfigSettings.shared.dataSettings.colorsApp[indexPath.row].idTheme
         UserDefaults.standard.set(newColor, forKey: "Theme")
-        ThemeColor.shared.ACCENT_COLOR = colorsApp[newColor].color
-        self.tabBarController?.tabBar.tintColor = ThemeColor.shared.ACCENT_COLOR
-        UINavigationBar.appearance().tintColor = ThemeColor.shared.ACCENT_COLOR
-        navigationController?.navigationBar.tintColor = ThemeColor.shared.ACCENT_COLOR
+        ConfigSettings.shared.ACCENT_COLOR = ConfigSettings.shared.dataSettings.colorsApp[newColor].color!
+        self.tabBarController?.tabBar.tintColor = ConfigSettings.shared.ACCENT_COLOR
+        UINavigationBar.appearance().tintColor = ConfigSettings.shared.ACCENT_COLOR
+        navigationController?.navigationBar.tintColor = ConfigSettings.shared.ACCENT_COLOR
         
         
         self.navigationController?.popViewController(animated: true)

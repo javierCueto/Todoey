@@ -93,7 +93,7 @@ class ActionModalView: UIView {
        
         b.addTarget(self, action: #selector(handleCloseView), for: .touchUpInside)
         b.setDimentions(height: 30, width: 30)
-        b.backgroundColor = ThemeColor.shared.ACCENT_COLOR
+        b.backgroundColor = ConfigSettings.shared.ACCENT_COLOR
         b.layer.cornerRadius = 15
         return b
     }()
@@ -110,7 +110,7 @@ class ActionModalView: UIView {
     private var emojiLabel: UILabel = {
         let label = UILabel()
         label.text = "Seleccione 1 emoji"
-        label.textColor = ThemeColor.shared.ACCENT_COLOR
+        label.textColor = ConfigSettings.shared.ACCENT_COLOR
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 16)
         return label
@@ -123,7 +123,7 @@ class ActionModalView: UIView {
         paddinView.setDimentions(height: 30, width: 8)
         field.leftView = paddinView
         field.leftViewMode = .always
-        field.tintColor = ThemeColor.shared.ACCENT_COLOR
+        field.tintColor = ConfigSettings.shared.ACCENT_COLOR
         field.placeholder = "Titulo de la categoria"
         field.layer.cornerRadius = 10
         return field
@@ -138,7 +138,7 @@ class ActionModalView: UIView {
         field.leftViewMode = .always
         field.rightView = paddinView
         field.rightViewMode = .always
-        field.tintColor = ThemeColor.shared.ACCENT_COLOR
+        field.tintColor = ConfigSettings.shared.ACCENT_COLOR
         field.layer.cornerRadius = 10
         field.font = UIFont.systemFont(ofSize: 30)
         field.textAlignment = .center
@@ -149,7 +149,7 @@ class ActionModalView: UIView {
     private let saveButton: UIButton = {
         let b = UIButton(type: .system)
         b.setTitle("Guardar", for: .normal)
-        b.backgroundColor = ThemeColor.shared.ACCENT_COLOR
+        b.backgroundColor = ConfigSettings.shared.ACCENT_COLOR
         b.setTitleColor(.white, for: .normal)
         b.addTarget(self, action: #selector(handleButtonView), for: .touchUpInside)
         b.layer.cornerRadius = 10

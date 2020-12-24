@@ -12,11 +12,7 @@ class SettingsController: UIViewController {
     private var tableview: UITableView!
     private let cellId = "cellID"
     
-    private let setings: [Setting] = [
-     
-        Setting(header: "Tema", items: colorsApp, typeSetting: .theme),
-        Setting(header: "Acerca de", items: aboutApp, typeSetting: .about)
-    ]
+    private var setings = [Setting]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +22,7 @@ class SettingsController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        setings =  ConfigSettings.shared.dataSettings.dataSettings
         tableview.reloadData()
         print("cargaron los settings de nuevo")
     }
@@ -97,7 +94,7 @@ extension SettingsController: UITableViewDataSource{
          cell.textLabel?.text = "Seleccione un tema"
          cell.imageView?.image = UIImage(systemName: "circle.fill")
             cell.accessoryType = .disclosureIndicator
-         cell.imageView?.tintColor = ThemeColor.shared.ACCENT_COLOR
+         cell.imageView?.tintColor = ConfigSettings.shared.ACCENT_COLOR
            /* cell.textLabel?.text = setings[indexPath.section].items[indexPath.row].name
             cell.imageView?.image = UIImage(systemName: "circle.fill")
             cell.imageView?.tintColor = setings[indexPath.section].items[indexPath.row].color*/

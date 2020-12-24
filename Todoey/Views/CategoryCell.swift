@@ -19,7 +19,7 @@ class CategoryCell: UITableViewCell {
             let isEmoji:Bool = emoji.text?.unicodeScalars.first?.properties.isEmoji ?? false
 
             if !isEmoji {
-                emoji.backgroundColor = ThemeColor.shared.ACCENT_COLOR
+                emoji.backgroundColor = ConfigSettings.shared.ACCENT_COLOR
             }
      
             categoryNameLabel.text = model.name

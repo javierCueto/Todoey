@@ -17,3 +17,4 @@ struct Setting {
     let items: [ItemSetting]
     let typeSetting: TypeSetting
 }
+
