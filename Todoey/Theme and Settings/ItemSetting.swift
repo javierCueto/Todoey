@@ -8,7 +8,6 @@
 import UIKit
 
 struct ItemSetting {
-    let idTheme: Int
     let name: String
     let detailName: String?
     let color: UIColor?
@@ -19,6 +18,5 @@ struct ItemSetting {
         self.detailName = detailName
         self.color = color
         self.icon = icon
-        self.idTheme = idTheme
     }
 }

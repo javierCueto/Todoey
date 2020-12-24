@@ -6,13 +6,6 @@
 //  Copyright © 2020 José Javier Cueto Mejía. All rights reserved.
 //
 
-//Colors
-/*
- private let settingsColor:
- 
- Setting(header: "Tema", items: [ItemSetting(name: "Rojo"), ItemSetting(name: "Verde")]),
- Setting(header: "Tema", items: [ItemSetting(name: "Rojo"), ItemSetting(name: "Verde")])
- */
 
 import UIKit
 
@@ -20,17 +13,25 @@ import UIKit
 struct DataSettings {
     var dataSettings: [Setting] = [Setting]()
     
+    //Dont delete any color. DON'T
     let colorsApp:[ItemSetting] = [
-        ItemSetting(idTheme: 0, name: "Blue",color: .systemBlue),
-        ItemSetting(idTheme: 1, name: "Red",color: .systemRed),
-        ItemSetting(idTheme: 2, name: "Green",color: .systemGreen),
-        ItemSetting(idTheme: 3, name: "Pink",color: .systemPink),
-        ItemSetting(idTheme: 4, name: "Teal",color: .systemTeal),
-        ItemSetting(idTheme: 5, name: "Gray",color: .systemGray),
-        ItemSetting(idTheme: 6, name: "Orange",color: .systemOrange),
-        ItemSetting(idTheme: 7, name: "Purple",color: .systemPurple),
-        ItemSetting(idTheme: 8, name: "Indigo",color: .systemIndigo),
-        ItemSetting(idTheme: 9, name: "Yellow",color: .systemYellow),
+        ItemSetting(name: "Blue",color: .systemBlue),
+        ItemSetting(name: "Blue 2",color: .blue),
+        ItemSetting(name: "Teal",color: .systemTeal),
+        ItemSetting(name: "Red",color: .systemRed),
+        ItemSetting(name: "Red 2",color: .red),
+        ItemSetting(name: "Green",color: .systemGreen),
+        ItemSetting(name: "Gray",color: .systemGray),
+        ItemSetting(name: "Orange",color: .systemOrange),
+        ItemSetting(name: "Purple",color: .systemPurple),
+        ItemSetting(name: "Indigo",color: .systemIndigo),
+        ItemSetting(name: "Pink",color: .systemPink),
+        ItemSetting(name: "Magenta",color: .magenta),
+        ItemSetting(name: "Yellow",color: .systemYellow),
+       
+       
+       
+
     ]
     let aboutApp = [
         ItemSetting(name: "Aplication",detailName: "\(Bundle.main.appName)"),

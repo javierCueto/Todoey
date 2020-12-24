@@ -39,7 +39,7 @@ extension ThemeController {
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
 
-        if UserDefaults.standard.integer(forKey: "Theme") == indexPath.row {
+        if ConfigSettings.shared.ACCENT_COLOR_INDEX == indexPath.row {
                 tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
         }
     }
@@ -51,14 +51,11 @@ extension ThemeController {
     
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let newColor = ConfigSettings.shared.dataSettings.colorsApp[indexPath.row].idTheme
-        UserDefaults.standard.set(newColor, forKey: "Theme")
-        ConfigSettings.shared.ACCENT_COLOR = ConfigSettings.shared.dataSettings.colorsApp[newColor].color!
+        ConfigSettings.shared.newColor(index: indexPath.row)
         self.tabBarController?.tabBar.tintColor = ConfigSettings.shared.ACCENT_COLOR
         UINavigationBar.appearance().tintColor = ConfigSettings.shared.ACCENT_COLOR
         navigationController?.navigationBar.tintColor = ConfigSettings.shared.ACCENT_COLOR
-        
-        
         self.navigationController?.popViewController(animated: true)
     }
+    
 }

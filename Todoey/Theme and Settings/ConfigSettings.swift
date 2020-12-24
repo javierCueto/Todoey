@@ -11,10 +11,17 @@ import UIKit
 final public class ConfigSettings  {
     let dataSettings = DataSettings()
     var ACCENT_COLOR: UIColor
+    var ACCENT_COLOR_INDEX: Int
     
     private init() {
-        ACCENT_COLOR = dataSettings.colorsApp[UserDefaults.standard.integer(forKey: "Theme")].color ?? UIColor.systemBlue
-        print("se inicio la configuracion")
+        ACCENT_COLOR_INDEX  = UserDefaults.standard.integer(forKey: "Theme")
+        ACCENT_COLOR = dataSettings.colorsApp[ACCENT_COLOR_INDEX].color ?? UIColor.systemBlue
+    }
+    
+    func newColor(index: Int){
+        UserDefaults.standard.set(index, forKey: "Theme")
+        ACCENT_COLOR = dataSettings.colorsApp[index].color ?? UIColor.systemBlue
+        ACCENT_COLOR_INDEX = index
     }
     public static let shared = ConfigSettings()
 }
