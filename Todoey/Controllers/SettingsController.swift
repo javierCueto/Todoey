@@ -24,9 +24,17 @@ class SettingsController: UIViewController {
         configureTable()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableview.reloadData()
+        print("cargaron los settings de nuevo")
+    }
+    
     func configUI(){
         navigationItem.title = "Configuración"
     }
+    
+    
     
     func configureTable(){
         
@@ -46,13 +54,16 @@ class SettingsController: UIViewController {
 extension SettingsController: UITableViewDelegate{
      func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        print(indexPath.section)
         if setings[indexPath.section].typeSetting == .theme {
-            let newColor = setings[indexPath.section].items[indexPath.row].idTheme
+            let controller = ThemeController()
+
+             navigationController?.pushViewController(controller, animated: true)
+
+            /*let newColor = setings[indexPath.section].items[indexPath.row].idTheme
             UserDefaults.standard.set(newColor, forKey: "Theme")
             ThemeColor.shared.ACCENT_COLOR = colorsApp[newColor].color
             self.tabBarController?.tabBar.tintColor = ThemeColor.shared.ACCENT_COLOR
-            UINavigationBar.appearance().tintColor = ThemeColor.shared.ACCENT_COLOR
+            UINavigationBar.appearance().tintColor = ThemeColor.shared.ACCENT_COLOR*/
         }
  
     }
@@ -61,7 +72,16 @@ extension SettingsController: UITableViewDelegate{
 
 extension SettingsController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        setings[section].items.count
+        switch(setings[section].typeSetting){
+            
+        case .theme:
+            return 1
+        case .about:
+            return setings[section].items.count
+        case .config:
+            return 1
+        }
+ 
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -74,9 +94,13 @@ extension SettingsController: UITableViewDataSource{
         switch(setings[indexPath.section].typeSetting){
             
         case .theme:
-            cell.textLabel?.text = setings[indexPath.section].items[indexPath.row].name
+         cell.textLabel?.text = "Seleccione un tema"
+         cell.imageView?.image = UIImage(systemName: "circle.fill")
+            cell.accessoryType = .disclosureIndicator
+         cell.imageView?.tintColor = ThemeColor.shared.ACCENT_COLOR
+           /* cell.textLabel?.text = setings[indexPath.section].items[indexPath.row].name
             cell.imageView?.image = UIImage(systemName: "circle.fill")
-            cell.imageView?.tintColor = setings[indexPath.section].items[indexPath.row].color
+            cell.imageView?.tintColor = setings[indexPath.section].items[indexPath.row].color*/
         case .about:
             cell.textLabel?.text = setings[indexPath.section].items[indexPath.row].name
             cell.detailTextLabel?.text = setings[indexPath.section].items[indexPath.row].detailName
