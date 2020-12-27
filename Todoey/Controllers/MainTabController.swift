@@ -15,9 +15,7 @@ class MainTabController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureViewControllers()
-        //view.backgroundColor = .white
-        print("cargaron todos los controladores")
-        
+        overrideUserInterfaceStyle = ConfigSettings.shared.STYLE_MODE
     }
     
 

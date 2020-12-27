@@ -28,11 +28,17 @@ struct DataSettings {
         ItemSetting(name: "Pink",color: .systemPink),
         ItemSetting(name: "Magenta",color: .magenta),
         ItemSetting(name: "Yellow",color: .systemYellow),
-       
-       
-       
-
     ]
+    
+    
+    let styleModeApp:[ItemSetting] = [
+        ItemSetting(name: "System",icon: "gear"),
+        ItemSetting(name: "Light mode",icon: "sun.max.fill"),
+        ItemSetting(name: "Dark mode",icon: "moon.fill"),
+    ]
+    
+    
+    
     let aboutApp = [
         ItemSetting(name: "Aplication",detailName: "\(Bundle.main.appName)"),
         ItemSetting(name: "Version",detailName: "\(Bundle.main.versionNumber)"),
@@ -42,7 +48,9 @@ struct DataSettings {
     
     init() {
         dataSettings = [
+            Setting(header: "Estilo de interfaz", items: styleModeApp, typeSetting: .mode),
             Setting(header: "Tema", items: colorsApp, typeSetting: .theme),
+            
             Setting(header: "Acerca de", items: aboutApp, typeSetting:  .about)
         ]
     }

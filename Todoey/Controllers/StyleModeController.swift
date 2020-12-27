@@ -1,20 +1,22 @@
 //
-//  ThemeController.swift
+//  StyleModeController.swift
 //  jToDo
 //
-//  Created by Javier Cueto on 24/12/20.
+//  Created by Javier Cueto on 27/12/20.
 //  Copyright © 2020 José Javier Cueto Mejía. All rights reserved.
 //
 
+
 import UIKit
 
-class ThemeController: UITableViewController {
+class StyleModeController: UITableViewController {
     let cellThemeID = "cellThemeID"
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "Tema principal"
         configureTableView()
+        navigationItem.title = "Estilo de interfaz"
+        navigationController?.navigationBar.prefersLargeTitles = true
     }
     
     func configureTableView(){
@@ -25,37 +27,35 @@ class ThemeController: UITableViewController {
     
 }
 
-extension ThemeController {
+extension StyleModeController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return ConfigSettings.shared.dataSettings.colorsApp.count
+        return ConfigSettings.shared.dataSettings.styleModeApp.count
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellThemeID, for: indexPath)
-        cell.textLabel?.text = ConfigSettings.shared.dataSettings.colorsApp[indexPath.row].name
-        cell.imageView?.image = UIImage(systemName: "circle.fill")
-        cell.imageView?.tintColor = ConfigSettings.shared.dataSettings.colorsApp[indexPath.row].color
+        cell.textLabel?.text = ConfigSettings.shared.dataSettings.styleModeApp[indexPath.row].name
+        cell.imageView?.image = UIImage(systemName: ConfigSettings.shared.dataSettings.styleModeApp[indexPath.row].icon!)
+        cell.imageView?.tintColor = ConfigSettings.shared.ACCENT_COLOR
         
         return cell
     }
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-
-        if ConfigSettings.shared.ACCENT_COLOR_INDEX == indexPath.row {
-                tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
+        
+        if ConfigSettings.shared.STYLE_MODE_INDEX == indexPath.row {
+            tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
         }
     }
     
 }
 
 
-extension ThemeController {
+extension StyleModeController {
     
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        ConfigSettings.shared.newColor(index: indexPath.row)
-        self.tabBarController?.tabBar.tintColor = ConfigSettings.shared.ACCENT_COLOR
-        UINavigationBar.appearance().tintColor = ConfigSettings.shared.ACCENT_COLOR
-        navigationController?.navigationBar.tintColor = ConfigSettings.shared.ACCENT_COLOR
+        ConfigSettings.shared.newStyleMode(index: indexPath.row)
+        self.tabBarController?.overrideUserInterfaceStyle = ConfigSettings.shared.STYLE_MODE
         self.navigationController?.popViewController(animated: true)
     }
     

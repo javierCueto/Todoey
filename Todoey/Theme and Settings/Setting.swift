@@ -10,6 +10,7 @@ enum TypeSetting {
     case theme
     case about
     case config
+    case mode
 }
 
 struct Setting {

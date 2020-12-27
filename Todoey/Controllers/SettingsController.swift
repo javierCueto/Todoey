@@ -29,6 +29,7 @@ class SettingsController: UIViewController {
     
     func configUI(){
         navigationItem.title = "Configuración"
+        navigationController?.navigationBar.prefersLargeTitles = true
     }
     
     
@@ -51,11 +52,24 @@ class SettingsController: UIViewController {
 extension SettingsController: UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        if setings[indexPath.section].typeSetting == .theme {
+        
+        switch(setings[indexPath.section].typeSetting){
+        
+        case .theme:
             let controller = ThemeController()
             
             navigationController?.pushViewController(controller, animated: true)
+        case .about:
+            break
+        case .config:
+            break
+        case .mode:
+            let controller = StyleModeController()
+            
+            navigationController?.pushViewController(controller, animated: true)
         }
+        
+        
         
     }
 }
@@ -70,6 +84,8 @@ extension SettingsController: UITableViewDataSource{
         case .about:
             return setings[section].items.count
         case .config:
+            return 1
+        case .mode:
             return 1
         }
         
@@ -94,6 +110,11 @@ extension SettingsController: UITableViewDataSource{
             cell.detailTextLabel?.text = setings[indexPath.section].items[indexPath.row].detailName
         case .config:
             break
+        case .mode:
+            cell.textLabel?.text =  ConfigSettings.shared.dataSettings.styleModeApp[ConfigSettings.shared.STYLE_MODE_INDEX].name
+            cell.accessoryType = .disclosureIndicator
+            cell.imageView?.image = UIImage(systemName: ConfigSettings.shared.dataSettings.styleModeApp[ConfigSettings.shared.STYLE_MODE_INDEX].icon!)
+            cell.imageView?.tintColor = ConfigSettings.shared.ACCENT_COLOR
         }
         
         
