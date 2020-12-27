@@ -37,8 +37,6 @@ class SearchController: UITableViewController{
     // MARK: -  HELPERS
     func configureUI(){
         navigationItem.title = "Busqueda"
-        //navigationItem.largeTitleDisplayMode = .never
-
     }
     
     func configureTableView(){
@@ -111,7 +109,7 @@ extension SearchController: UISearchResultsUpdating{
 extension SearchController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
        let controller = ItemController()
-        controller.selectedCategory = filterCategories[indexPath.section]
+        controller.selectedCategory = filterCategories[indexPath.row]
         navigationController?.pushViewController(controller, animated: true)
     }
     
