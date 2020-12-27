@@ -12,11 +12,13 @@ struct ItemSetting {
     let detailName: String?
     let color: UIColor?
     let icon: String?
+    let activated: Bool?
 
-    init(idTheme:Int = 0, name: String, detailName: String? = nil, color: UIColor? = nil, icon:String? = nil){
+    init(idTheme:Int = 0, name: String, detailName: String? = nil, color: UIColor? = nil, icon:String? = nil, activated: Bool = false){
         self.name = name
         self.detailName = detailName
         self.color = color
         self.icon = icon
+        self.activated = activated
     }
 }

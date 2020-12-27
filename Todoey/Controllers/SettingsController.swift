@@ -45,6 +45,18 @@ class SettingsController: UIViewController {
         tableview.dataSource = self
     }
     
+    
+    // MARK: -  Action
+    
+    @objc func handleSwitch(sender: UISwitch){
+        if sender.tag == 0{
+            print("here")
+            ConfigSettings.shared.updateConfirmationDelete(value: sender.isOn)
+        }else{
+            ConfigSettings.shared.updateAnimation(value: sender.isOn)
+        }
+    }
+    
 }
 
 
@@ -84,7 +96,7 @@ extension SettingsController: UITableViewDataSource{
         case .about:
             return setings[section].items.count
         case .config:
-            return 1
+            return setings[section].items.count
         case .mode:
             return 1
         }
@@ -109,7 +121,13 @@ extension SettingsController: UITableViewDataSource{
             cell.textLabel?.text = setings[indexPath.section].items[indexPath.row].name
             cell.detailTextLabel?.text = setings[indexPath.section].items[indexPath.row].detailName
         case .config:
-            break
+            cell.textLabel?.text = setings[indexPath.section].items[indexPath.row].name
+            let shareLocationSwitch = UISwitch()
+            shareLocationSwitch.tag = indexPath.row
+            shareLocationSwitch.isOn = ConfigSettingsGeneral.init(rawValue: indexPath.row)!.description
+            shareLocationSwitch.addTarget(self, action: #selector(handleSwitch), for: .valueChanged)
+            cell.accessoryView = shareLocationSwitch
+            cell.selectionStyle = .none
         case .mode:
             cell.textLabel?.text =  ConfigSettings.shared.dataSettings.styleModeApp[ConfigSettings.shared.STYLE_MODE_INDEX].name
             cell.accessoryType = .disclosureIndicator

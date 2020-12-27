@@ -185,10 +185,16 @@ class ActionModalView: UIView {
             focusField()
             clearField()
             
-            UIView.animate(withDuration: 0.2) {
+            if ConfigSettings.shared.MODAL_ANIMATION {
+                UIView.animate(withDuration: 0.2) {
+                    self.viewCard.frame.origin.y = CGFloat(self.viewCardHeight)
+                    self.alpha = 1
+                }
+            }else{
                 self.viewCard.frame.origin.y = CGFloat(self.viewCardHeight)
                 self.alpha = 1
             }
+           
             viewStatus.toggle()
         }
         
@@ -196,15 +202,30 @@ class ActionModalView: UIView {
     }
     
     func dismiss(){
-        UIView.animate(withDuration: 0.2) {
-            self.viewCard.frame.origin.y = CGFloat(-self.viewCardHeight)
-            self.alpha = 0
-            self.endEditing(true)
+        if ConfigSettings.shared.MODAL_ANIMATION {
+       
+            UIView.animate(withDuration: 0.2) {
+                self.viewCard.frame.origin.y = CGFloat(-self.viewCardHeight)
+                self.alpha = 0
+                self.endEditing(true)
+                
+            }completion: { (_) in
+                self.removeFromSuperview()
+                self.viewStatus.toggle()
+            }
+        }else{
+   
+        
+                self.viewCard.frame.origin.y = CGFloat(-self.viewCardHeight)
+                self.alpha = 0
+                self.endEditing(true)
+
+                self.removeFromSuperview()
+                self.viewStatus.toggle()
             
-        }completion: { (_) in
-            self.removeFromSuperview()
-            self.viewStatus.toggle()
         }
+       
+        
     }
     
     

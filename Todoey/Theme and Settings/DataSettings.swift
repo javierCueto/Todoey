@@ -46,11 +46,17 @@ struct DataSettings {
         ItemSetting(name: "Developer",detailName: "Javier Cueto"),
     ]
     
+    let configApp = [
+        ItemSetting(name: "Confirmar en eliminar"),
+        ItemSetting(name: "Animación en el modal"),
+    ]
+    
+    
     init() {
         dataSettings = [
+            Setting(header: "General", items: configApp, typeSetting: .config),
             Setting(header: "Estilo de interfaz", items: styleModeApp, typeSetting: .mode),
             Setting(header: "Tema", items: colorsApp, typeSetting: .theme),
-            
             Setting(header: "Acerca de", items: aboutApp, typeSetting:  .about)
         ]
     }
