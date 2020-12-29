@@ -49,12 +49,8 @@ class SettingsController: UIViewController {
     // MARK: -  Action
     
     @objc func handleSwitch(sender: UISwitch){
-        if sender.tag == 0{
-            print("here")
-            ConfigSettings.shared.updateConfirmationDelete(value: sender.isOn)
-        }else{
-            ConfigSettings.shared.updateAnimation(value: sender.isOn)
-        }
+        ConfigSettings.shared.updateConfigGeneral( index: sender.tag, value: sender.isOn)
+        print(ConfigSettings.shared.CONFIRMATION_DELETE)
     }
     
 }
@@ -124,7 +120,7 @@ extension SettingsController: UITableViewDataSource{
             cell.textLabel?.text = setings[indexPath.section].items[indexPath.row].name
             let shareLocationSwitch = UISwitch()
             shareLocationSwitch.tag = indexPath.row
-            shareLocationSwitch.isOn = ConfigSettingsGeneral.init(rawValue: indexPath.row)!.description
+            shareLocationSwitch.isOn = setings[indexPath.section].items[indexPath.row].configGeneral!.description 
             shareLocationSwitch.addTarget(self, action: #selector(handleSwitch), for: .valueChanged)
             cell.accessoryView = shareLocationSwitch
             cell.selectionStyle = .none

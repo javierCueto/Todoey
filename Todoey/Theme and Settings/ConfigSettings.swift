@@ -8,17 +8,17 @@
 
 import UIKit
 
-enum ConfigSettingsGeneral : Int {
-    case g1
-    case g2
+enum ConfigSettingsGeneral{
+    case confirmationDelete
+    case modalAnimation
     
     
     var description: Bool {
         switch self {
         
-        case .g1:
+        case .confirmationDelete:
             return ConfigSettings.shared.CONFIRMATION_DELETE
-        case .g2:
+        case .modalAnimation:
             return  ConfigSettings.shared.MODAL_ANIMATION
         }
     }
@@ -62,17 +62,23 @@ final public class ConfigSettings  {
     }
     
     
-    func updateAnimation(value: Bool){
+    func updateConfigGeneral(index: Int,value: Bool){
+        guard let config = dataSettings.configApp[index].configGeneral else {return}
+        switch config {
 
-        UserDefaults.standard.set(value, forKey: "ModalAnimation")
-        MODAL_ANIMATION = value
+        case .confirmationDelete:
+            UserDefaults.standard.set(value, forKey: "ConfimationDelete")
+            CONFIRMATION_DELETE = value
+            print(CONFIRMATION_DELETE)
+        case .modalAnimation:
+            UserDefaults.standard.set(value, forKey: "ModalAnimation")
+            MODAL_ANIMATION = value
+        }
+
 
     }
     
-    func updateConfirmationDelete(value: Bool){
-        UserDefaults.standard.set(value, forKey: "ConfimationDelete")
-        MODAL_ANIMATION = value
-    }
+
     
     public static let shared = ConfigSettings()
 }

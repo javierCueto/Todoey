@@ -47,8 +47,9 @@ struct DataSettings {
     ]
     
     let configApp = [
-        ItemSetting(name: "Confirmar en eliminar"),
-        ItemSetting(name: "Animación en el modal"),
+        ItemSetting(name: "Animación en el modal",configGeneral:  .modalAnimation),
+        ItemSetting(name: "Confirmar en eliminar",configGeneral:  .confirmationDelete),
+        
     ]
     
     

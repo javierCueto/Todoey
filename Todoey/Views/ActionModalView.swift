@@ -9,12 +9,12 @@
 import UIKit
 
 
- protocol ActionModalViewDelegate: class{
+protocol ActionModalViewDelegate: class{
     func didFinishCategory(title: String?, emoji: String?, categoryAction: ActionModal)
 }
 
 protocol ActionItemModalViewDelegate: class{
-   func didFinishItem(title: String?, itemAction: ActionModal)
+    func didFinishItem(title: String?, itemAction: ActionModal)
 }
 
 
@@ -39,7 +39,7 @@ enum ActionModal {
 enum TypeObject {
     case category
     case item
-
+    
     
     var description: String {
         switch self {
@@ -75,7 +75,7 @@ class ActionModalView: UIView {
             guard let cat = category else {return}
             titleTextField.text = cat.name
             emojiTextField.text = cat.emoji
-           
+            
         }
     }
     
@@ -96,7 +96,7 @@ class ActionModalView: UIView {
         let imageXmark = UIImage(systemName: "xmark", withConfiguration: imageConfig)
         b.setImage(imageXmark, for: .normal)
         b.tintColor = .white
-       
+        
         b.addTarget(self, action: #selector(handleCloseView), for: .touchUpInside)
         b.setDimentions(height: 30, width: 30)
         //b.backgroundColor = ConfigSettings.shared.ACCENT_COLOR
@@ -155,7 +155,7 @@ class ActionModalView: UIView {
     private let saveButton: UIButton = {
         let b = UIButton(type: .system)
         b.setTitle("Guardar", for: .normal)
- 
+        
         b.setTitleColor(.white, for: .normal)
         b.addTarget(self, action: #selector(handleButtonView), for: .touchUpInside)
         b.layer.cornerRadius = 10
@@ -175,7 +175,7 @@ class ActionModalView: UIView {
         self.configureViewCard()
         self.titleLabel.text = typeObject.description
         self.titleTextField.placeholder = placeHolder
-       
+        
     }
     
     
@@ -191,10 +191,9 @@ class ActionModalView: UIView {
                     self.alpha = 1
                 }
             }else{
-                self.viewCard.frame.origin.y = CGFloat(self.viewCardHeight)
                 self.alpha = 1
             }
-           
+            
             viewStatus.toggle()
         }
         
@@ -203,7 +202,7 @@ class ActionModalView: UIView {
     
     func dismiss(){
         if ConfigSettings.shared.MODAL_ANIMATION {
-       
+            
             UIView.animate(withDuration: 0.2) {
                 self.viewCard.frame.origin.y = CGFloat(-self.viewCardHeight)
                 self.alpha = 0
@@ -214,17 +213,20 @@ class ActionModalView: UIView {
                 self.viewStatus.toggle()
             }
         }else{
-   
-        
-                self.viewCard.frame.origin.y = CGFloat(-self.viewCardHeight)
-                self.alpha = 0
+            
+            
+            self.viewCard.frame.origin.y = CGFloat(-self.viewCardHeight)
+            self.alpha = 0
+            UIView.performWithoutAnimation {
                 self.endEditing(true)
-
-                self.removeFromSuperview()
-                self.viewStatus.toggle()
+            }
+            
+            
+            self.removeFromSuperview()
+            self.viewStatus.toggle()
             
         }
-       
+        
         
     }
     
@@ -245,12 +247,12 @@ class ActionModalView: UIView {
     
     func configureViewCard(){
         
-       /* let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.extraLight)
-        let blurEffectView = UIVisualEffectView(effect: blurEffect)
-        blurEffectView.alpha = 0.9
-        blurEffectView.frame = bounds
-        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        addSubview(blurEffectView)*/
+        /* let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.extraLight)
+         let blurEffectView = UIVisualEffectView(effect: blurEffect)
+         blurEffectView.alpha = 0.9
+         blurEffectView.frame = bounds
+         blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+         addSubview(blurEffectView)*/
         
         backgroundColor = UIColor.black.withAlphaComponent(0.67)
         self.alpha = 0
@@ -274,14 +276,14 @@ class ActionModalView: UIView {
         titleTextField.anchor(top: titleLabel.bottomAnchor, left: viewCard.leftAnchor, right: viewCard.rightAnchor,paddingTop: 20, paddingLeft: 20 ,paddingRight: 20, height: 50)
         
         if typeObject == .category {
-        viewCard.addSubview(emojiLabel)
-        emojiLabel.anchor(top: titleTextField.bottomAnchor, left: viewCard.leftAnchor, right: viewCard.rightAnchor,paddingTop: 20, paddingLeft: 20 ,paddingRight: 20)
-        
-        
-        
-        viewCard.addSubview(emojiTextField)
-        emojiTextField.centerX(inView: viewCard)
-        emojiTextField.anchor(top: emojiLabel.bottomAnchor, paddingTop: 10, width: 70, height: 50)
+            viewCard.addSubview(emojiLabel)
+            emojiLabel.anchor(top: titleTextField.bottomAnchor, left: viewCard.leftAnchor, right: viewCard.rightAnchor,paddingTop: 20, paddingLeft: 20 ,paddingRight: 20)
+            
+            
+            
+            viewCard.addSubview(emojiTextField)
+            emojiTextField.centerX(inView: viewCard)
+            emojiTextField.anchor(top: emojiLabel.bottomAnchor, paddingTop: 10, width: 70, height: 50)
         }
         
         viewCard.addSubview(saveButton)

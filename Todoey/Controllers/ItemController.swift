@@ -26,7 +26,12 @@ class ItemController: UITableViewController {
         configureUI()
         configureTableView()
         addItemView.delegateItem = self
-     
+        tabBarController?.tabBar.isHidden = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        tabBarController?.tabBar.isHidden = false
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -65,6 +70,19 @@ class ItemController: UITableViewController {
     }
     
     func callActionModalView(withCategory category: Category? , withActionCategory actionCategory: ActionModal){
+        
+        if ConfigSettings.shared.MODAL_ANIMATION {
+            callActionModalViewAnimation(withCategory: category, withActionCategory: actionCategory)
+        }else{
+            UIView.performWithoutAnimation {
+                callActionModalViewAnimation(withCategory: category, withActionCategory: actionCategory)
+            }
+        }
+        
+  
+    }
+    
+    func callActionModalViewAnimation(withCategory category: Category? , withActionCategory actionCategory: ActionModal){
         navigationController?.view.addSubview(addItemView)
         addItemView.action = actionCategory
         addItemView.category = category
@@ -154,16 +172,44 @@ extension ItemController {
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            self.contex.delete(self.itemArray[indexPath.row])
-            do{
-                try self.contex.save()
-            }catch{
-                print("Erro saving category \(error) :)")
+            
+            
+            if ConfigSettings.shared.CONFIRMATION_DELETE {
+                let refreshAlert = UIAlertController(title: "Refresh", message: "All data will be lost.", preferredStyle: UIAlertController.Style.alert)
+
+                refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+                    self.contex.delete(self.itemArray[indexPath.row])
+                    do{
+                        try self.contex.save()
+                    }catch{
+                        print("Erro saving category \(error) :)")
+                    }
+                    self.itemArray.remove(at: indexPath.row)
+                    self.tableView.beginUpdates()
+                    self.tableView.deleteRows(at: [indexPath], with: .automatic)
+                    self.tableView.endUpdates()
+                }))
+
+                refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
+                      print("Handle Cancel Logic here")
+                }))
+
+                present(refreshAlert, animated: true, completion: nil)
+            }else{
+                self.contex.delete(self.itemArray[indexPath.row])
+                do{
+                    try self.contex.save()
+                }catch{
+                    print("Erro saving category \(error) :)")
+                }
+                self.itemArray.remove(at: indexPath.row)
+                self.tableView.beginUpdates()
+                self.tableView.deleteRows(at: [indexPath], with: .automatic)
+                self.tableView.endUpdates()
             }
-            self.itemArray.remove(at: indexPath.row)
-            self.tableView.beginUpdates()
-            self.tableView.deleteRows(at: [indexPath], with: .automatic)
-            self.tableView.endUpdates()
+   
+            
+           
         }
     }
 }

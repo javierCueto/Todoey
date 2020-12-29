@@ -76,10 +76,22 @@ class CategoryController: UITableViewController {
     
     
     func callCategoryView(withCategory category: Category? , withActionCategory actionCategory: ActionModal){
+        
+        if ConfigSettings.shared.MODAL_ANIMATION {
+            callCategoryViewAnimation(withCategory: category, withActionCategory: actionCategory)
+        }else{
+            UIView.performWithoutAnimation {
+                callCategoryViewAnimation(withCategory: category, withActionCategory: actionCategory)
+            }
+        }
+        
+     
+    }
+    
+    func callCategoryViewAnimation(withCategory category: Category? , withActionCategory actionCategory: ActionModal){
         navigationController?.view.addSubview(addCategoryView)
         addCategoryView.action = actionCategory
         addCategoryView.category = category
-        print("nuevo aaction \(addCategoryView.action.description)")
         addCategoryView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height)
     }
     
