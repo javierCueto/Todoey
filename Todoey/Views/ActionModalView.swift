@@ -292,6 +292,9 @@ class ActionModalView: UIView {
     }
     
     @objc func handleCloseView(){
+        let generator = UIImpactFeedbackGenerator(style: .medium)
+        generator.impactOccurred()
+        
         action = .close
         if typeObject == .category {
             delegate?.didFinishCategory(title: titleTextField.text, emoji: emojiTextField.text, categoryAction: action)

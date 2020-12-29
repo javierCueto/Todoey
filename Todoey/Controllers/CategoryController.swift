@@ -71,7 +71,7 @@ class CategoryController: UITableViewController {
     }
     
     func configureNavigationBar(){
-        navigationItem.title = "Categorias"
+        navigationItem.title = NSLocalizedString("CategoryTitle", comment: "")
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(handleAddNewCategory))
         // navigationItem.rightBarButtonItem?.tintColor = ACCENT_COLOR

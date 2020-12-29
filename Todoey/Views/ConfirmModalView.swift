@@ -178,6 +178,9 @@ class ConfirmModalView: UIView {
     }
     
     @objc func handleCloseView(){
+        let generator = UIImpactFeedbackGenerator(style: .medium)
+        generator.impactOccurred()
+        
         guard let indexPath = self.indexPath else {return}
         delegate?.didFinishConfirm( indexPath: indexPath, isDeleted: false)
     }
