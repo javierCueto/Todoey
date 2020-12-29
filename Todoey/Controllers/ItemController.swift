@@ -12,6 +12,9 @@ import CoreData
 class ItemController: UITableViewController {
     let cellIDItem = "cellIDItem"
     private let addItemView = ActionModalView(typeObject: .item, placeHolder: "Nombre de la tarea")
+    private let confirmModalView = ConfirmModalView(title: "Esta seguro?")
+    private lazy var viewHeight = view.frame.height
+    private lazy var viewWidth = view.frame.width
     
     // MARK: -  PROPERTIES
     var itemArray = [Item]()
@@ -26,6 +29,7 @@ class ItemController: UITableViewController {
         configureUI()
         configureTableView()
         addItemView.delegateItem = self
+        confirmModalView.delegate = self
         tabBarController?.tabBar.isHidden = true
     }
     
@@ -79,7 +83,7 @@ class ItemController: UITableViewController {
             }
         }
         
-  
+        
     }
     
     func callActionModalViewAnimation(withCategory category: Category? , withActionCategory actionCategory: ActionModal){
@@ -108,6 +112,31 @@ class ItemController: UITableViewController {
         self.tableView.reloadData()
     }
     
+    
+    // MARK: -  Crud
+    
+    func deleteItem(indexPath: IndexPath){
+        self.contex.delete(self.itemArray[indexPath.row])
+        do{
+            try self.contex.save()
+        }catch{
+            print("Erro saving category \(error) :)")
+        }
+        self.itemArray.remove(at: indexPath.row)
+        self.tableView.beginUpdates()
+        self.tableView.deleteRows(at: [indexPath], with: .automatic)
+        self.tableView.endUpdates()
+    }
+    
+}
+
+extension ItemController: ConfirmModalViewDelegate {
+    func didFinishConfirm(indexPath: IndexPath, isDeleted: Bool) {
+        self.confirmModalView.dismiss()
+        if isDeleted {
+            deleteItem(indexPath: indexPath)
+        }
+    }
     
 }
 
@@ -164,7 +193,7 @@ extension ItemController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIDItem, for: indexPath) as! ItemCell
         cell.model = itemArray[indexPath.row]
-   
+        
         
         return cell
     }
@@ -175,41 +204,18 @@ extension ItemController {
             
             
             if ConfigSettings.shared.CONFIRMATION_DELETE {
-                let refreshAlert = UIAlertController(title: "Refresh", message: "All data will be lost.", preferredStyle: UIAlertController.Style.alert)
-
-                refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
-                    self.contex.delete(self.itemArray[indexPath.row])
-                    do{
-                        try self.contex.save()
-                    }catch{
-                        print("Erro saving category \(error) :)")
-                    }
-                    self.itemArray.remove(at: indexPath.row)
-                    self.tableView.beginUpdates()
-                    self.tableView.deleteRows(at: [indexPath], with: .automatic)
-                    self.tableView.endUpdates()
-                }))
-
-                refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
-                      print("Handle Cancel Logic here")
-                }))
-
-                present(refreshAlert, animated: true, completion: nil)
+                self.tabBarController?.view.addSubview(self.confirmModalView)
+                self.confirmModalView.indexPath = indexPath
+                self.confirmModalView.nameToDelete = self.itemArray[indexPath.row].title ?? ""
+                let frame = CGRect(x: 0, y: 0, width: self.viewWidth, height: self.viewHeight)
+                self.confirmModalView.frame = frame
+                
             }else{
-                self.contex.delete(self.itemArray[indexPath.row])
-                do{
-                    try self.contex.save()
-                }catch{
-                    print("Erro saving category \(error) :)")
-                }
-                self.itemArray.remove(at: indexPath.row)
-                self.tableView.beginUpdates()
-                self.tableView.deleteRows(at: [indexPath], with: .automatic)
-                self.tableView.endUpdates()
+                deleteItem(indexPath: indexPath)
             }
-   
             
-           
+            
+            
         }
     }
 }

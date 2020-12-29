@@ -10,43 +10,49 @@ import UIKit
 import CoreData
 
 class CategoryController: UITableViewController {
+    // MARK: -  Properties
     private let cellId = "cellId"
     private let cellSpacingHeight:CGFloat = 20
     private let addCategoryView = ActionModalView(typeObject: .category , placeHolder: "Nombre de la categoria")
- 
+    private let confirmModalView = ConfirmModalView(title: "Esta seguro?")
+    private lazy var viewHeight = view.frame.height
+    private lazy var viewWidth = view.frame.width
+    
     
     private var categories = [Category]()
     
     let contex = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     
-    
+    // MARK: -  lifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavigationBar()
         configureTableView()
         addCategoryView.delegate = self
+        confirmModalView.delegate = self
         print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
-       
+        
         
     }
     
-
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         loadCategories()
     }
     
-
+    
+    // MARK: -  helpers
     func loadCategories(){
         let request: NSFetchRequest<Category> = Category.fetchRequest()
         request.sortDescriptors = [NSSortDescriptor(key: "updatedAt", ascending: false)]
         do{
             categories = try contex.fetch(request)
-       
-             
-
+            
+            
+            
         }catch{
             print("Erro obteniendo context \(error) :)")
         }
@@ -68,7 +74,7 @@ class CategoryController: UITableViewController {
         navigationItem.title = "Categorias"
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(handleAddNewCategory))
-       // navigationItem.rightBarButtonItem?.tintColor = ACCENT_COLOR
+        // navigationItem.rightBarButtonItem?.tintColor = ACCENT_COLOR
         
         
     }
@@ -85,30 +91,60 @@ class CategoryController: UITableViewController {
             }
         }
         
-     
+        
     }
     
     func callCategoryViewAnimation(withCategory category: Category? , withActionCategory actionCategory: ActionModal){
         navigationController?.view.addSubview(addCategoryView)
         addCategoryView.action = actionCategory
         addCategoryView.category = category
-        addCategoryView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height)
+        let frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height)
+        print(frame)
+        addCategoryView.frame = frame
     }
     
+    // MARK: -  Crud
+    
+    func deleteCategory(indexPath: IndexPath){
+        self.contex.delete(self.categories[indexPath.section])
+        self.categories.remove(at: indexPath.section)
+        
+        do{
+            try self.contex.save()
+        }catch{
+            print("Erro saving category \(error) :)")
+        }
+        
+        let indexSet = IndexSet(arrayLiteral: indexPath.section)
+        tableView.deleteSections(indexSet, with: .automatic)
+    }
 }
 
 extension CategoryController {
     @objc func handleAddNewCategory(){
         
         let generator = UIImpactFeedbackGenerator(style: .medium)
-                    generator.impactOccurred()
+        generator.impactOccurred()
         
         callCategoryView(withCategory: nil, withActionCategory: .new)
     }
 }
 
+extension CategoryController: ConfirmModalViewDelegate {
+    func didFinishConfirm(indexPath: IndexPath, isDeleted: Bool) {
+        self.confirmModalView.dismiss()
+        if isDeleted {
+            deleteCategory(indexPath: indexPath)
+        }else{
+            self.tableView.reloadData()
+        }
+        
+    }
+    
+    
+}
 extension CategoryController: ActionModalViewDelegate{
-
+    
     
     func didFinishCategory(title: String?, emoji: String?,categoryAction: ActionModal) {
         self.addCategoryView.dismiss()
@@ -170,7 +206,7 @@ extension CategoryController{
         cell.model = categories[indexPath.section]
         let items = categories[indexPath.section].items?.filtered(
             using: NSPredicate(format: "done = false")
-         )
+        )
         cell.numberItemsLabel.text = "Tareas faltantes \(items?.count ?? 0)"
         return cell
     }
@@ -185,17 +221,16 @@ extension CategoryController{
         
         let delete = UIContextualAction(style: .destructive, title: "Delete") { (contextualAction, view, boolValue)  in
             
-            self.contex.delete(self.categories[indexPath.section])
-            self.categories.remove(at: indexPath.section )
-            
-            do{
-                try self.contex.save()
-            }catch{
-                print("Erro saving category \(error) :)")
+            if ConfigSettings.shared.CONFIRMATION_DELETE {
+                self.tabBarController?.view.addSubview(self.confirmModalView)
+                self.confirmModalView.indexPath = indexPath
+                self.confirmModalView.nameToDelete = self.categories[indexPath.section].name ?? ""
+                let frame = CGRect(x: 0, y: 0, width: self.viewWidth, height: self.viewHeight)
+                self.confirmModalView.frame = frame
+                
+            }else{
+                self.deleteCategory(indexPath: indexPath)
             }
-            
-            let indexSet = IndexSet(arrayLiteral: indexPath.section)
-            tableView.deleteSections(indexSet, with: .automatic)
             
         }
         
@@ -246,7 +281,7 @@ extension CategoryController{
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-       let controller = ItemController()
+        let controller = ItemController()
         controller.selectedCategory = categories[indexPath.section]
         navigationController?.pushViewController(controller, animated: true)
         categories[indexPath.section].updatedAt = Date()

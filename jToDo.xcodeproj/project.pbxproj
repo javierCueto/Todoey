@@ -16,6 +16,7 @@
 		451188B12592EA0700CE5942 /* DataSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451188B02592EA0700CE5942 /* DataSettings.swift */; };
 		451FF9AB258016E500398C71 /* ActionModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451FF9AA258016E500398C71 /* ActionModalView.swift */; };
 		45229CA5259914D1006D6557 /* StyleModeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45229CA4259914D1006D6557 /* StyleModeController.swift */; };
+		45229CB1259BB050006D6557 /* ConfirmModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45229CB0259BB050006D6557 /* ConfirmModalView.swift */; };
 		458A269F2594E9CE00986C9A /* ThemeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458A269E2594E9CE00986C9A /* ThemeController.swift */; };
 		45C156D025871CCD00B0B5B8 /* MainTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C156CF25871CCD00B0B5B8 /* MainTabController.swift */; };
 		45C156D325871F2500B0B5B8 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C156D225871F2500B0B5B8 /* SettingsController.swift */; };
@@ -43,6 +44,7 @@
 		451188B02592EA0700CE5942 /* DataSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSettings.swift; sourceTree = "<group>"; };
 		451FF9AA258016E500398C71 /* ActionModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionModalView.swift; sourceTree = "<group>"; };
 		45229CA4259914D1006D6557 /* StyleModeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleModeController.swift; sourceTree = "<group>"; };
+		45229CB0259BB050006D6557 /* ConfirmModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmModalView.swift; sourceTree = "<group>"; };
 		458A269E2594E9CE00986C9A /* ThemeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeController.swift; sourceTree = "<group>"; };
 		45C156CF25871CCD00B0B5B8 /* MainTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabController.swift; sourceTree = "<group>"; };
 		45C156D225871F2500B0B5B8 /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 				45C1C2772582DA2900A06E3A /* EmojiTextField.swift */,
 				4511889F259117A000CE5942 /* SubtitleCell.swift */,
 				451188A225915E2C00CE5942 /* ItemCell.swift */,
+				45229CB0259BB050006D6557 /* ConfirmModalView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -267,6 +270,7 @@
 				45229CA5259914D1006D6557 /* StyleModeController.swift in Sources */,
 				451188B12592EA0700CE5942 /* DataSettings.swift in Sources */,
 				451188AE2592E71600CE5942 /* Setting.swift in Sources */,
+				45229CB1259BB050006D6557 /* ConfirmModalView.swift in Sources */,
 				45C156DC25885BC100B0B5B8 /* ItemController.swift in Sources */,
 				45C156D6258722E000B0B5B8 /* SearchController.swift in Sources */,
 			);
