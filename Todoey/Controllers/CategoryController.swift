@@ -116,7 +116,11 @@ class CategoryController: UITableViewController {
         }
         
         let indexSet = IndexSet(arrayLiteral: indexPath.section)
-        tableView.deleteSections(indexSet, with: .automatic)
+        
+        tableView.beginUpdates()
+        tableView.deleteSections(indexSet, with: .left)
+        tableView.endUpdates()
+
     }
 }
 
@@ -136,7 +140,7 @@ extension CategoryController: ConfirmModalViewDelegate {
         if isDeleted {
             deleteCategory(indexPath: indexPath)
         }else{
-            self.tableView.reloadData()
+            //self.tableView.reloadData()
         }
         
     }
@@ -222,6 +226,11 @@ extension CategoryController{
         let delete = UIContextualAction(style: .destructive, title: "Delete") { (contextualAction, view, boolValue)  in
             
             if ConfigSettings.shared.CONFIRMATION_DELETE {
+                //self.tableView.reloadData()
+                let indexSet = IndexSet(arrayLiteral: indexPath.section)
+                self.tableView.beginUpdates()
+                self.tableView.reloadSections(indexSet, with: .right)
+                self.tableView.endUpdates()
                 self.tabBarController?.view.addSubview(self.confirmModalView)
                 self.confirmModalView.indexPath = indexPath
                 self.confirmModalView.nameToDelete = self.categories[indexPath.section].name ?? ""

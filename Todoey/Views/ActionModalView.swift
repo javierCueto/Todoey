@@ -92,15 +92,15 @@ class ActionModalView: UIView {
     
     private let closedButton: UIButton = {
         let b = UIButton(type: .system)
-        let imageConfig = UIImage.SymbolConfiguration(pointSize: 12)
+        let imageConfig = UIImage.SymbolConfiguration(pointSize: 14)
         let imageXmark = UIImage(systemName: "xmark", withConfiguration: imageConfig)
         b.setImage(imageXmark, for: .normal)
         b.tintColor = .white
         
         b.addTarget(self, action: #selector(handleCloseView), for: .touchUpInside)
-        b.setDimentions(height: 30, width: 30)
+        b.setDimentions(height: 40, width: 40)
         //b.backgroundColor = ConfigSettings.shared.ACCENT_COLOR
-        b.layer.cornerRadius = 15
+        b.layer.cornerRadius = 20
         return b
     }()
     
@@ -266,7 +266,7 @@ class ActionModalView: UIView {
         viewCard.layer.cornerRadius = 15
         
         viewCard.addSubview(closedButton)
-        closedButton.anchor(top: viewCard.topAnchor, right: viewCard.rightAnchor, paddingTop: -7.5, paddingRight: -7.5)
+        closedButton.anchor(top: viewCard.topAnchor, right: viewCard.rightAnchor, paddingTop: -10, paddingRight: -10)
         
         viewCard.addSubview(titleLabel)
         titleLabel.centerX(inView: viewCard)
