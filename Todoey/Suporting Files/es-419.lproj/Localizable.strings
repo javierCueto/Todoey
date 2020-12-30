@@ -5,4 +5,69 @@
   Created by Javier Cueto on 29/12/20.
   Copyright © 2020 José Javier Cueto Mejía. All rights reserved.
 */
-"CategoryTitle" = "Categoria";
+
+"CategoriesTitle" = "Categorias";
+"SearchTitle" = "Buscar";
+"SettingsTitle" = "Configuración";
+"PlaceHolderCategory" = "Nombre de la categoría";
+"PlaceHolderTask" = "Nombre de la tarea";
+
+
+//Case Button and type
+
+"EditButton" = "Editar";
+"SaveButton" = "Guardar";
+"NothingButton" = "Nada";
+
+ "CategoryTitle" = "Categoria";
+ "TaskTitle" = "Tarea";
+
+"SelectEmojiTitle" = "Seleccione un Emoji";
+
+//Confirm Modal
+
+"ConfirmTitleModal" = "¿Estás seguro?";
+"DeleteButton" = "Eliminar";
+
+//
+"TodoTitle" = "Tareas por hacer";
+
+"SeachPlaceHolder" = "Buscar categorías";
+
+//settings
+"interfazTitle" = "Apariencia";
+"themeTitle" = "Theme";
+"selectThemeTitle" = "Seleccione un tema";
+
+"Blue" ="Azul";
+"Blue2"= "Azul 2";
+"Teal" = "Turquesa";
+"Red" = "Rojo";
+"Red2" = "Rojo 2";
+"Green" = "Verde";
+"Gray" = "Gris";
+"Orange" = "Naranja";
+"Purple" = "Purpura";
+"Indigo" = "Índigo";
+"Pink" = "Rosa";
+"Magenta" = "Magenta";
+"Yellow" = "Amarillo";
+
+"System" = "Automático";
+"LightMode" = "Modo Claro";
+"DarkMode" = "Modo Oscuro";
+
+
+"appName" = "Nombre de la App";
+"Version" = "Version";
+"Compatibility" = "Compatibilidad";
+"Developer" = "Desarrollador";
+
+
+ "AnimationInModal" = "Animación en el Modal";
+"ConfirmToDelete" = "Confirmar al Eliminar";
+
+"General" = "General";
+ "InterfaceStyle" = "Apariencia";
+"Theme" = "Tema";
+"About" = "Acerca de";

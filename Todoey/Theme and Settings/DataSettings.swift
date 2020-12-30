@@ -15,50 +15,50 @@ struct DataSettings {
     
     //Dont delete any color. DON'T
     let colorsApp:[ItemSetting] = [
-        ItemSetting(name: "Blue",color: .systemBlue),
-        ItemSetting(name: "Blue 2",color: .blue),
-        ItemSetting(name: "Teal",color: .systemTeal),
-        ItemSetting(name: "Red",color: .systemRed),
-        ItemSetting(name: "Red 2",color: .red),
-        ItemSetting(name: "Green",color: .systemGreen),
-        ItemSetting(name: "Gray",color: .systemGray),
-        ItemSetting(name: "Orange",color: .systemOrange),
-        ItemSetting(name: "Purple",color: .systemPurple),
-        ItemSetting(name: "Indigo",color: .systemIndigo),
-        ItemSetting(name: "Pink",color: .systemPink),
-        ItemSetting(name: "Magenta",color: .magenta),
-        ItemSetting(name: "Yellow",color: .systemYellow),
+        ItemSetting(name: "Blue".localized(),color: .systemBlue),
+        ItemSetting(name: "Blue2".localized(),color: .blue),
+        ItemSetting(name: "Teal".localized(),color: .systemTeal),
+        ItemSetting(name: "Red".localized(),color: .systemRed),
+        ItemSetting(name: "Red2".localized(),color: .red),
+        ItemSetting(name: "Green".localized(),color: .systemGreen),
+        ItemSetting(name: "Gray".localized(),color: .systemGray),
+        ItemSetting(name: "Orange".localized(),color: .systemOrange),
+        ItemSetting(name: "Purple".localized(),color: .systemPurple),
+        ItemSetting(name: "Indigo".localized(),color: .systemIndigo),
+        ItemSetting(name: "Pink".localized(),color: .systemPink),
+        ItemSetting(name: "Magenta".localized(),color: .magenta),
+        ItemSetting(name: "Yellow".localized(),color: .systemYellow),
     ]
-    
-    
+
+
     let styleModeApp:[ItemSetting] = [
-        ItemSetting(name: "System",icon: "gear"),
-        ItemSetting(name: "Light mode",icon: "sun.max.fill"),
-        ItemSetting(name: "Dark mode",icon: "moon.fill"),
+        ItemSetting(name: "System".localized(),icon: "gear"),
+        ItemSetting(name: "LightMode".localized(),icon: "sun.max.fill"),
+        ItemSetting(name: "DarkMode".localized(),icon: "moon.fill"),
     ]
     
     
     
     let aboutApp = [
-        ItemSetting(name: "Aplication",detailName: "\(Bundle.main.appName)"),
-        ItemSetting(name: "Version",detailName: "\(Bundle.main.versionNumber)"),
-        ItemSetting(name: "Compatibilidad",detailName: "iPhone"),
-        ItemSetting(name: "Developer",detailName: "Javier Cueto"),
+        ItemSetting(name: "appName".localized(),detailName: "\(Bundle.main.appName)"),
+        ItemSetting(name: "Version".localized(),detailName: "\(Bundle.main.versionNumber)"),
+        ItemSetting(name: "Compatibility".localized(),detailName: "iPhone"),
+        ItemSetting(name: "Developer".localized(),detailName: "Javier Cueto 👨🏽‍💻"),
     ]
     
     let configApp = [
-        ItemSetting(name: "Animación en el modal",configGeneral:  .modalAnimation),
-        ItemSetting(name: "Confirmar en eliminar",configGeneral:  .confirmationDelete),
+        ItemSetting(name: "AnimationInModal".localized(),configGeneral:  .modalAnimation),
+        ItemSetting(name: "ConfirmToDelete".localized(),configGeneral:  .confirmationDelete),
         
     ]
     
     
     init() {
         dataSettings = [
-            Setting(header: "General", items: configApp, typeSetting: .config),
-            Setting(header: "Estilo de interfaz", items: styleModeApp, typeSetting: .mode),
-            Setting(header: "Tema", items: colorsApp, typeSetting: .theme),
-            Setting(header: "Acerca de", items: aboutApp, typeSetting:  .about)
+            Setting(header: "General".localized(), items: configApp, typeSetting: .config),
+            Setting(header: "InterfaceStyle".localized(), items: styleModeApp, typeSetting: .mode),
+            Setting(header: "Theme".localized(), items: colorsApp, typeSetting: .theme),
+            Setting(header: "About".localized(), items: aboutApp, typeSetting:  .about)
         ]
     }
     

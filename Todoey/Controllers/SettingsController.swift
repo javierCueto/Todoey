@@ -28,7 +28,7 @@ class SettingsController: UIViewController {
     }
     
     func configUI(){
-        navigationItem.title = "Configuración"
+        navigationItem.title = "SettingsTitle".localized()
         navigationController?.navigationBar.prefersLargeTitles = true
     }
     
@@ -109,7 +109,7 @@ extension SettingsController: UITableViewDataSource{
         switch(setings[indexPath.section].typeSetting){
         
         case .theme:
-            cell.textLabel?.text = "Seleccione un tema"
+            cell.textLabel?.text = "selectThemeTitle".localized()
             cell.imageView?.image = UIImage(systemName: "circle.fill")
             cell.accessoryType = .disclosureIndicator
             cell.imageView?.tintColor = ConfigSettings.shared.ACCENT_COLOR

@@ -6,4 +6,68 @@
   Copyright © 2020 José Javier Cueto Mejía. All rights reserved.
 */
 
-"CategoryTitle" = "Category";
+"CategoriesTitle" = "Categories";
+"SearchTitle" = "Search";
+"SettingsTitle" = "Settings";
+"PlaceHolderCategory" = "Name here";
+"PlaceHolderTask" = "Task Name";
+
+
+//Case Button and type
+
+"EditButton" = "Edit";
+"SaveButton" = "Save";
+"NothingButton" = "Nothing";
+
+ "CategoryTitle" = "Category";
+ "TaskTitle" = "Task";
+
+"SelectEmojiTitle" = "Select One Emoji";
+
+//Confirm Modal
+
+"ConfirmTitleModal" = "Are you sure?";
+"DeleteButton" = "Delete";
+
+//
+"TodoTitle" = "To do";
+
+"SeachPlaceHolder" = "Search categories";
+
+//settings
+"interfazTitle" = "Appearance";
+"themeTitle" = "Theme";
+"selectThemeTitle" = "Select a theme";
+
+"Blue" ="Blue";
+"Blue2"= "Blue 2";
+"Teal" = "Teal";
+"Red" = "Red";
+"Red2" = "Red 2";
+"Green" = "Green";
+"Gray" = "Gray";
+"Orange" = "Orange";
+"Purple" = "Purple";
+"Indigo" = "Indigo";
+"Pink" = "Pink";
+"Magenta" = "Magenta";
+"Yellow" = "Yellow";
+
+"System" = "Automatic by the system";
+"LightMode" = "Light Mode";
+"DarkMode" = "Dark Mode";
+
+
+"appName" = "App Name";
+"Version" = "Version";
+"Compatibility" = "Compatibility";
+"Developer" = "Developer";
+
+
+ "AnimationInModal" = "Animation in Modal";
+"ConfirmToDelete" = "Confirm to delete";
+
+"General" = "General";
+ "InterfaceStyle" = "Appearance";
+"Theme" = "Theme";
+"About" = "About";

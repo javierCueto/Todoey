@@ -11,8 +11,8 @@ import CoreData
 
 class ItemController: UITableViewController {
     let cellIDItem = "cellIDItem"
-    private let addItemView = ActionModalView(typeObject: .item, placeHolder: "Nombre de la tarea")
-    private let confirmModalView = ConfirmModalView(title: "Esta seguro?")
+    private let addItemView = ActionModalView(typeObject: .item, placeHolder: "PlaceHolderTask".localized())
+    private let confirmModalView = ConfirmModalView(title: "ConfirmTitleModal".localized())
     private lazy var viewHeight = view.frame.height
     private lazy var viewWidth = view.frame.width
     
@@ -151,7 +151,7 @@ extension ItemController: ActionItemModalViewDelegate{
         case .new:
             let newItem = Item(context: self.contex)
             
-            newItem.title = title
+            newItem.name = title
             newItem.done = false
             newItem.parentCategory = self.selectedCategory
             newItem.createdAt = Date()
@@ -206,7 +206,7 @@ extension ItemController {
             if ConfigSettings.shared.CONFIRMATION_DELETE {
                 self.tabBarController?.view.addSubview(self.confirmModalView)
                 self.confirmModalView.indexPath = indexPath
-                self.confirmModalView.nameToDelete = self.itemArray[indexPath.row].title ?? ""
+                self.confirmModalView.nameToDelete = self.itemArray[indexPath.row].name ?? ""
                 let frame = CGRect(x: 0, y: 0, width: self.viewWidth, height: self.viewHeight)
                 self.confirmModalView.frame = frame
                 

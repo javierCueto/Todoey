@@ -15,7 +15,7 @@ class StyleModeController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
-        navigationItem.title = "Estilo de interfaz"
+        navigationItem.title = "interfazTitle".localized()
         navigationController?.navigationBar.prefersLargeTitles = true
     }
     

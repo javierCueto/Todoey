@@ -36,7 +36,7 @@ class SearchController: UITableViewController{
     
     // MARK: -  HELPERS
     func configureUI(){
-        navigationItem.title = "Busqueda"
+        navigationItem.title = "SearchTitle".localized()
     }
     
     func configureTableView(){
@@ -49,7 +49,7 @@ class SearchController: UITableViewController{
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.hidesNavigationBarDuringPresentation = false
-        searchController.searchBar.placeholder = "Search"
+        searchController.searchBar.placeholder = "SeachPlaceHolder".localized()
         navigationItem.searchController = searchController
         definesPresentationContext = false
     }

@@ -11,10 +11,10 @@ import CoreData
 
 class CategoryController: UITableViewController {
     // MARK: -  Properties
-    private let cellId = "cellId"
+    private let cellId = "CategorieCellID"
     private let cellSpacingHeight:CGFloat = 20
-    private let addCategoryView = ActionModalView(typeObject: .category , placeHolder: "Nombre de la categoria")
-    private let confirmModalView = ConfirmModalView(title: "Esta seguro?")
+    private let addCategoryView = ActionModalView(typeObject: .category , placeHolder: "PlaceHolderCategory".localized())
+    private let confirmModalView = ConfirmModalView(title: "ConfirmTitleModal".localized())
     private lazy var viewHeight = view.frame.height
     private lazy var viewWidth = view.frame.width
     
@@ -71,7 +71,7 @@ class CategoryController: UITableViewController {
     }
     
     func configureNavigationBar(){
-        navigationItem.title = NSLocalizedString("CategoryTitle", comment: "")
+        navigationItem.title = "CategoriesTitle".localized()
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(handleAddNewCategory))
         // navigationItem.rightBarButtonItem?.tintColor = ACCENT_COLOR
@@ -211,7 +211,7 @@ extension CategoryController{
         let items = categories[indexPath.section].items?.filtered(
             using: NSPredicate(format: "done = false")
         )
-        cell.numberItemsLabel.text = "Tareas faltantes \(items?.count ?? 0)"
+        cell.numberItemsLabel.text = "\("TodoTitle".localized()) \(items?.count ?? 0)"
         return cell
     }
     
@@ -223,7 +223,7 @@ extension CategoryController{
         
         
         
-        let delete = UIContextualAction(style: .destructive, title: "Delete") { (contextualAction, view, boolValue)  in
+        let delete = UIContextualAction(style: .destructive, title: "DeleteButton".localized()) { (contextualAction, view, boolValue)  in
             
             if ConfigSettings.shared.CONFIRMATION_DELETE {
                 //self.tableView.reloadData()
@@ -243,7 +243,7 @@ extension CategoryController{
             
         }
         
-        let edit = UIContextualAction(style: .normal, title: "Edit") { (contextualAction, view, boolValue) in
+        let edit = UIContextualAction(style: .normal, title: "EditButton".localized()) { (contextualAction, view, boolValue) in
             
             self.callCategoryView(withCategory: self.categories[indexPath.section], withActionCategory: .edit)
             

@@ -63,7 +63,7 @@ class ConfirmModalView: UIView {
     
     private let saveButton: UIButton = {
         let b = UIButton(type: .system)
-        b.setTitle("Borrar", for: .normal)
+        b.setTitle("DeleteButton".localized(), for: .normal)
         
         b.setTitleColor(.white, for: .normal)
         b.addTarget(self, action: #selector(handleButtonView), for: .touchUpInside)

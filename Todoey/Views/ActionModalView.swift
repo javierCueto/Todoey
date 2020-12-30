@@ -27,11 +27,11 @@ enum ActionModal {
         switch self {
         
         case .edit:
-            return "Editar"
+            return "EditButton".localized()
         case .new:
-            return  "Guardar"
+            return  "SaveButton".localized()
         case .close:
-            return "nada"
+            return "NothingButton".localized()
         }
     }
 }
@@ -45,9 +45,9 @@ enum TypeObject {
         switch self {
         
         case .category:
-            return "Categoria"
+            return "CategoryTitle".localized()
         case .item:
-            return  "Tarea"
+            return  "TaskTitle".localized()
         }
     }
 }
@@ -96,17 +96,14 @@ class ActionModalView: UIView {
         let imageXmark = UIImage(systemName: "xmark", withConfiguration: imageConfig)
         b.setImage(imageXmark, for: .normal)
         b.tintColor = .white
-        
         b.addTarget(self, action: #selector(handleCloseView), for: .touchUpInside)
         b.setDimentions(height: 40, width: 40)
-        //b.backgroundColor = ConfigSettings.shared.ACCENT_COLOR
         b.layer.cornerRadius = 20
         return b
     }()
     
     private var titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Categoria"
         label.textColor = UIColor(named: "TitleColor")
         label.textAlignment = .center
         label.font = UIFont.boldSystemFont(ofSize: 18)
@@ -115,7 +112,7 @@ class ActionModalView: UIView {
     
     private var emojiLabel: UILabel = {
         let label = UILabel()
-        label.text = "Seleccione 1 emoji"
+        label.text = "SelectEmojiTitle".localized()
         
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 16)
@@ -129,8 +126,6 @@ class ActionModalView: UIView {
         paddinView.setDimentions(height: 30, width: 8)
         field.leftView = paddinView
         field.leftViewMode = .always
-        
-        field.placeholder = "Titulo de la categoria"
         field.layer.cornerRadius = 10
         return field
     }()
@@ -154,8 +149,6 @@ class ActionModalView: UIView {
     
     private let saveButton: UIButton = {
         let b = UIButton(type: .system)
-        b.setTitle("Guardar", for: .normal)
-        
         b.setTitleColor(.white, for: .normal)
         b.addTarget(self, action: #selector(handleButtonView), for: .touchUpInside)
         b.layer.cornerRadius = 10

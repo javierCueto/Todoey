@@ -9,8 +9,7 @@
 import UIKit
 
 class MainTabController: UITabBarController {
-    // MARK: -  PROPERTIES
-    
+
     // MARK: -  LIFE CYCLE
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,20 +17,15 @@ class MainTabController: UITabBarController {
         overrideUserInterfaceStyle = ConfigSettings.shared.STYLE_MODE
     }
     
-
-    // MARK: -  API
-    
-
     // MARK: -  HELPERS
     func configureViewControllers(){
-        view.backgroundColor = .white
         let imageConfig = UIImage.SymbolConfiguration(weight: .heavy)
         
-        let category = templateNavigationController(unseledtedImage: UIImage(systemName: "list.bullet")!, selectedImage:UIImage(systemName: "list.bullet",withConfiguration: imageConfig)!, rootViewController: CategoryController(), tittle: "Categorias")
+        let category = templateNavigationController(unseledtedImage: UIImage(systemName: "list.bullet")!, selectedImage:UIImage(systemName: "list.bullet",withConfiguration: imageConfig)!, rootViewController: CategoryController(), tittle: "CategoriesTitle".localized())
         
-        let settings = templateNavigationController(unseledtedImage: UIImage(systemName: "gearshape")!, selectedImage:UIImage(systemName: "gearshape" ,withConfiguration: imageConfig)!, rootViewController: SettingsController(),tittle: "Configuración")
+        let settings = templateNavigationController(unseledtedImage: UIImage(systemName: "gearshape")!, selectedImage:UIImage(systemName: "gearshape" ,withConfiguration: imageConfig)!, rootViewController: SettingsController(),tittle: "SettingsTitle".localized())
         
-        let search = templateNavigationController(unseledtedImage: UIImage(systemName: "magnifyingglass")!, selectedImage: UIImage(systemName: "magnifyingglass",withConfiguration: imageConfig)!, rootViewController: SearchController(),tittle: "Buscar")
+        let search = templateNavigationController(unseledtedImage: UIImage(systemName: "magnifyingglass")!, selectedImage: UIImage(systemName: "magnifyingglass",withConfiguration: imageConfig)!, rootViewController: SearchController(),tittle: "SearchTitle".localized())
 
         
         viewControllers = [category,search,settings]
@@ -44,7 +38,6 @@ class MainTabController: UITabBarController {
         nav.tabBarItem.selectedImage = selectedImage
         nav.title = tittle
         nav.navigationBar.tintColor = ConfigSettings.shared.ACCENT_COLOR
-        
         return nav
     }
 }

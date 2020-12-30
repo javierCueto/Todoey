@@ -13,7 +13,7 @@ class ThemeController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "Tema principal"
+        navigationItem.title = "themeTitle".localized()
         configureTableView()
     }
     

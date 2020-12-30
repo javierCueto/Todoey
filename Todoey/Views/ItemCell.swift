@@ -17,13 +17,13 @@ class ItemCell: UITableViewCell {
             isCheck.tintColor = ConfigSettings.shared.ACCENT_COLOR
             nameLabel.removeStrike()
             if model.done {
-                nameLabel.text = model.title
+                nameLabel.text = model.name
                 nameLabel.addStrike()
                 isCheck.image = UIImage(systemName: "checkmark.circle")
                 
             }else {
                 nameLabel.removeStrike()
-                nameLabel.text = model.title
+                nameLabel.text = model.name
                 isCheck.image = UIImage(systemName: "circle")
             }
             
