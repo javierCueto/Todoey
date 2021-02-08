@@ -152,9 +152,10 @@ class ConfirmModalView: UIView {
         self.alpha = 0
         addSubview(viewCard)
         viewCard.centerX(inView: self)
+        viewCard.centerY(inView: self)
         viewCard.setDimentions(height: CGFloat(self.viewCardHeight) , width: UIScreen.main.bounds.width - 40)
         
-        viewCard.anchor(top: self.safeAreaLayoutGuide.topAnchor, paddingTop: 20)
+       // viewCard.anchor(top: self.safeAreaLayoutGuide.topAnchor, paddingTop: 20)
         
         viewCard.backgroundColor = .secondarySystemBackground
         viewCard.layer.cornerRadius = 15
